@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.DeliveryDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.DeliveryDoc">
+    <result column="id" property="id" />
+        <result column="order_id" property="orderId" />
+        <result column="order_sn" property="orderSn" />
+        <result column="user_id" property="userId" />
+        <result column="admin_id" property="adminId" />
+        <result column="consignee" property="consignee" />
+        <result column="zipcode" property="zipcode" />
+        <result column="mobile" property="mobile" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="address" property="address" />
+        <result column="shipping_code" property="shippingCode" />
+        <result column="shipping_name" property="shippingName" />
+        <result column="shipping_price" property="shippingPrice" />
+        <result column="invoice_no" property="invoiceNo" />
+        <result column="tel" property="tel" />
+        <result column="note" property="note" />
+        <result column="best_time" property="bestTime" />
+        <result column="create_time" property="createTime" />
+        <result column="is_del" property="isDel" />
+        <result column="store_id" property="storeId" />
+        <result column="send_type" property="sendType" />
+        <result column="store_address_consignee" property="storeAddressConsignee" />
+        <result column="store_address_mobile" property="storeAddressMobile" />
+        <result column="store_address_province_id" property="storeAddressProvinceId" />
+        <result column="store_address_city_id" property="storeAddressCityId" />
+        <result column="store_address_district_id" property="storeAddressDistrictId" />
+        <result column="store_address" property="storeAddress" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        order_id, order_sn, user_id, admin_id, consignee, zipcode, mobile, country, province, city, district, address, shipping_code, shipping_name, shipping_price, invoice_no, tel, note, best_time, create_time, is_del, store_id, send_type, store_address_consignee, store_address_mobile, store_address_province_id, store_address_city_id, store_address_district_id, store_address
+    </sql>
+
+</mapper>

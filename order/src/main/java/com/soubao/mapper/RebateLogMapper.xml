@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.RebateLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.RebateLog">
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="buy_user_id" property="buyUserId" />
+        <result column="nickname" property="nickname" />
+        <result column="order_sn" property="orderSn" />
+        <result column="order_id" property="orderId" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="money" property="money" />
+        <result column="level" property="level" />
+        <result column="create_time" property="createTime" />
+        <result column="confirm" property="confirm" />
+        <result column="status" property="status" />
+        <result column="confirm_time" property="confirmTime" />
+        <result column="remark" property="remark" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+    <resultMap id="RebateOrderGoodsMap" type="com.soubao.entity.RebateLog" extends="BaseResultMap">
+        <collection property="orderGoodsList" ofType="com.soubao.entity.OrderGoods" select="com.soubao.dao.OrderGoodsMapper.queryOrderGoods" column="order_id">
+            <result column="rec_id" jdbcType="INTEGER" property="recId"/>
+            <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+            <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+            <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+            <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
+            <result column="goods_num" jdbcType="SMALLINT" property="goodsNum"/>
+            <result column="final_price" jdbcType="DECIMAL" property="finalPrice"/>
+            <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+            <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+            <result column="member_goods_price" jdbcType="DECIMAL" property="memberGoodsPrice"/>
+            <result column="give_integral" jdbcType="INTEGER" property="giveIntegral"/>
+            <result column="spec_key" jdbcType="VARCHAR" property="specKey"/>
+            <result column="spec_key_name" jdbcType="VARCHAR" property="specKeyName"/>
+            <result column="bar_code" jdbcType="VARCHAR" property="barCode"/>
+            <result column="is_comment" jdbcType="INTEGER" property="isComment"/>
+            <result column="prom_type" jdbcType="INTEGER" property="promType"/>
+            <result column="prom_id" jdbcType="INTEGER" property="promId"/>
+            <result column="is_send" jdbcType="INTEGER" property="isSend"/>
+            <result column="delivery_id" jdbcType="INTEGER" property="deliveryId"/>
+            <result column="sku" jdbcType="VARCHAR" property="sku"/>
+            <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+            <result column="commission" jdbcType="INTEGER" property="commission"/>
+            <result column="is_checkout" jdbcType="INTEGER" property="isCheckout"/>
+            <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+            <result column="distribut" jdbcType="DECIMAL" property="distribut"/>
+            <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="LowerResultMap" type="com.soubao.vo.UserLowerVo">
+        <result column="reg_time" property="regTime" />
+        <result column="nickname" property="nickname" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="order_count" property="orderCount" />
+        <result column="buy_user_id" property="buyUserId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, buy_user_id, nickname, order_sn, order_id, goods_price, money, level, create_time, confirm, status, confirm_time, remark, store_id
+    </sql>
+
+    <select id="selectLowerPage" resultMap="LowerResultMap">
+        SELECT
+	      nickname,
+	      sum(goods_price) as goods_price,
+	      count(1) as order_count,
+	      buy_user_id
+        FROM
+	      rebate_log
+        WHERE
+	      `level` = #{level}
+          AND user_id = #{userId}
+          AND status in (1,2,3)
+        GROUP BY
+	      buy_user_id
+	    order by buy_user_id
+    </select>
+
+    <select id="selectRebateOrderGoodsList" resultMap="RebateOrderGoodsMap">
+        SELECT * FROM rebate_log
+        WHERE user_id = #{userId}
+        <if test="status != null and status.size() > 0">
+            AND `status` IN
+          <foreach collection="status" item="item" separator="," open="(" close=")"> #{item} </foreach>
+        </if>
+        ORDER BY id DESC
+    </select>
+</mapper>

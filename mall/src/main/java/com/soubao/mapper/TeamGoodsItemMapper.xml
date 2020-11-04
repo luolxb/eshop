@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TeamGoodsItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.TeamGoodsItem">
+        <result column="team_id" property="teamId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="item_id" property="itemId" />
+        <result column="team_price" property="teamPrice" />
+        <result column="sales_sum" property="salesSum" />
+        <result column="deleted" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        team_id, goods_id, item_id, team_price, sales_sum, deleted
+    </sql>
+
+</mapper>

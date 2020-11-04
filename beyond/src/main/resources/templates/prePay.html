@@ -1,0 +1,89 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>支付</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body{background-color:#efeff4;}
+        .main{padding:15px;height:100vh;}
+        .mobile-box{padding:30px;background-color:#fff;}
+        .mobile-top h2{font-size:18px;color:#000;}
+        .mobile-content h3 img{margin-right:5px;}
+        .mobile-content h3{font-size:14px;color:#b2b2b2;}
+        .input-num{border-bottom: 1px solid #dcdcdc;margin-bottom: 5vh;padding-top: 5vh;}
+        .input-num .tit{font-size:16px;color:#999;}
+        .input-num .pay{position:relative;line-height: 50px;margin:10px 0;}
+        .input-num .pay input{padding-left: 30px;line-height: 50px;border:none;outline:none;}
+        .input-num .pay span.jinbi{font-weight:bold;color:#000;font-size:24px;position: absolute;left: 0;top: 0;}
+        .pay-click a.nopay{cursor: pointer;background-color: #a3dea3;color: #fff;width: 100%;display: block;border-radius: 5px;line-height: 50px;font-size: 20px;}
+        .pay-click a.pay{background-color:#1aac19;}
+        input[type=number] {-moz-appearance:textfield;}
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;  margin: 0;}
+        @media(min-width:720px){
+            .mobile-box{width:720px;margin:0 auto;}
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+    <script>
+
+        function pay() {
+            var rootUrl = "http://dede.ntscic.cn";
+            var totalFee= document.getElementById('totalFee').value;
+            var orderSn = document.getElementById('orderSn').value;
+            var body = document.getElementById('body').value;
+            var param = "?totalFee="+ totalFee +"&orderSn="+orderSn+"&body="+body;
+            alert(param);
+            if (navigator.userAgent.indexOf("AlipayClient") > 0) {
+                var aUrl = "/order/weixin/unifiedOrder";
+                window.location.href = rootUrl + aUrl + param;
+            } else if (navigator.userAgent.indexOf("MicroMessenger") > 0) {
+                var wUrl = "/order/weixin/unifiedOrder";
+                var redirect_url = rootUrl + wUrl + param;
+                alert(redirect_url);
+                var wxUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxced9716263ff78b6&redirect_uri="+encodeURIComponent(redirect_url)+"&response_type=code&scope=snsapi_base#wechat_redirect";
+                //alert("微信："+wxUrl);
+                window.location.href=wxUrl;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="main">
+    <div class="mobile-box">
+        <div class="mobile-top ">
+            <div class="back">
+                <i class="fa fa-angle-left fa-2x"></i>
+            </div>
+
+            <h2 class="top-center color21">新时空智能有限公司</h2>
+
+            <div class="back"></div>
+        </div>
+        <div class="mobile-content">
+            <h3 class="color21 font">
+                <img src="http://img1.52mamahome.com/hotel/homes.png" class="mr10" alt="">新时空智能有限公司</h3>
+            <div class="input-num">
+                <div class="tit">金额</div>
+                <div class="pay">
+                    <span class="jinbi">￥</span>
+                    <input type="number" th:value= "${totalFee}" class="w-100" id="totalFee" readonly="readonly">
+                    <input type="hidden" th:value= "${orderSn}" class="w-100" id="orderSn" readonly="readonly">
+                    <input type="hidden" th:value= "${body}" class="w-100" id="body" readonly="readonly">
+                </div>
+            </div>
+            <p class="text-center pay pay-click" id="goPay" onclick="pay()"><a class="nopay pay">支付</a></p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

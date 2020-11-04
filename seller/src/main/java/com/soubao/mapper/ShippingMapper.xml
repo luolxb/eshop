@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ShippingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Shipping">
+        <id column="shipping_id" property="shippingId" />
+        <result column="shipping_name" property="shippingName" />
+        <result column="shipping_code" property="shippingCode" />
+        <result column="shipping_desc" property="shippingDesc" />
+        <result column="shipping_logo" property="shippingLogo" />
+        <result column="template_width" property="templateWidth" />
+        <result column="template_height" property="templateHeight" />
+        <result column="template_offset_x" property="templateOffsetX" />
+        <result column="template_offset_y" property="templateOffsetY" />
+        <result column="template_img" property="templateImg" />
+        <result column="template_html" property="templateHtml" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        shipping_id, shipping_name, shipping_code, shipping_desc, shipping_logo, template_width, template_height, template_offset_x, template_offset_y, template_img, template_html
+    </sql>
+
+</mapper>

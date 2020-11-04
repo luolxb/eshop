@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SellerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Seller">
+        <id column="seller_id" property="sellerId" />
+        <result column="seller_name" property="sellerName" />
+        <result column="user_id" property="userId" />
+        <result column="group_id" property="groupId" />
+        <result column="store_id" property="storeId" />
+        <result column="is_admin" property="isAdmin" />
+        <result column="seller_quicklink" property="sellerQuicklink" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="enabled" property="enabled" />
+        <result column="add_time" property="addTime" />
+        <result column="token" property="token" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seller_id, seller_name, user_id, group_id, store_id, is_admin, seller_quicklink, last_login_time, enabled, add_time, token
+    </sql>
+
+</mapper>

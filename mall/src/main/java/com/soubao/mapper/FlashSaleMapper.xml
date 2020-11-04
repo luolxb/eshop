@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.FlashSaleMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.FlashSale">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+
+        <!-- 活动标题 -->
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+
+        <!-- 参团商品ID -->
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+
+        <!-- 对应spec_goods_price商品规格id -->
+        <result column="item_id" jdbcType="BIGINT" property="itemId"/>
+
+        <!-- 活动价格 -->
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+
+        <!-- 商品参加活动数 -->
+        <result column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+
+        <!-- 每人限购数 -->
+        <result column="buy_limit" jdbcType="INTEGER" property="buyLimit"/>
+
+        <!-- 已购买人数 -->
+        <result column="buy_num" jdbcType="INTEGER" property="buyNum"/>
+
+        <!-- 已下单数 -->
+        <result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+
+        <!-- 开始时间 -->
+        <result column="start_time" jdbcType="INTEGER" property="startTime"/>
+
+        <!-- 结束时间 -->
+        <result column="end_time" jdbcType="INTEGER" property="endTime"/>
+
+        <!-- 是否已结束 -->
+        <result column="is_end" jdbcType="BIT" property="isEnd"/>
+
+        <!-- 商品名称 -->
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+
+        <!-- 是否推荐 -->
+        <result column="recommend" jdbcType="BIT" property="recommend"/>
+
+        <!-- 抢购状态：1正常，0待审核，2审核拒绝，3关闭活动，4商品售馨 -->
+        <result column="status" jdbcType="BIT" property="status"/>
+
+        <!-- 活动描述 -->
+        <result column="description" jdbcType="LONGVARCHAR" property="description"/>
+        <!-- 是否删除 -->
+        <result column="is_del" jdbcType="BIT" property="isDel"/>
+        <!-- 创建时间 -->
+        <result column="gmt_create" jdbcType="BIT" property="gmtCreate"/>
+        <!-- 修改时间 -->
+        <result column="gmt_modified" jdbcType="BIT" property="gmtModified"/>
+
+        <result column="shop_price" property="shopPrice"/>
+        <result column="percent" property="percent"/>
+    </resultMap>
+    <select id="selectFlashSaleGoodsPage" resultMap="BaseResultMap">
+        SELECT fs.*, g.shop_price, 100*(FORMAT(fs.buy_num/fs.goods_num,2)) AS percent
+        FROM flash_sale AS fs
+        INNER JOIN goods AS g ON g.goods_id = fs.goods_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+</mapper>

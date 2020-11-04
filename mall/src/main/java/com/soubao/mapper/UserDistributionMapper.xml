@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.UserDistributionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.UserDistribution">
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_name" property="goodsName" />
+        <result column="cat_id" property="catId" />
+        <result column="brand_id" property="brandId" />
+        <result column="share_num" property="shareNum" />
+        <result column="sales_num" property="salesNum" />
+        <result column="addtime" property="addtime" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <resultMap id="UserDistributionGoodsMap" type="com.soubao.vo.UserDistributionGoodsVo">
+        <result column="id" property="id" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_name" property="goodsName" />
+        <result column="shop_price" property="shopPrice" />
+        <result column="is_free_shipping" property="isFreeShipping" />
+        <result column="share_num" property="shareNum" />
+        <result column="addtime" property="addTime" />
+        <result column="share_sales_num" property="shareSalesNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, user_name, goods_id, goods_name, cat_id, brand_id, share_num, sales_num, addtime, store_id
+    </sql>
+
+    <select id="selectGoodsPage" resultMap="UserDistributionGoodsMap">
+        select ud.id,ud.share_num,ud.sales_num as share_sales_num,ud.addtime,g.goods_id,g.goods_name,g.shop_price,g.is_free_shipping,distribut from user_distribution ud
+        INNER JOIN goods g ON ud.goods_id = g.goods_id
+        where g.is_on_sale = 1 and goods_state = 1 and distribut &gt; 0
+        <if test="userDistribution != null">
+            <if test="userDistribution.userId != null and userDistribution.userId != ''">
+                and ud.user_id = #{userDistribution.userId}
+            </if>
+        </if>
+        order by ud.addtime desc
+    </select>
+
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.NewsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.News">
+        <id column="article_id" property="articleId" />
+        <result column="cat_id" property="catId" />
+        <result column="title" property="title" />
+        <result column="check_type" property="checkType" />
+        <result column="check_describe" property="checkDescribe" />
+        <result column="tags" property="tags" />
+        <result column="content" property="content" />
+        <result column="user_id" property="userId" />
+        <result column="author" property="author" />
+        <result column="author_email" property="authorEmail" />
+        <result column="keywords" property="keywords" />
+        <result column="article_type" property="articleType" />
+        <result column="is_open" property="isOpen" />
+        <result column="add_time" property="addTime" />
+        <result column="file_url" property="fileUrl" />
+        <result column="open_type" property="openType" />
+        <result column="link" property="link" />
+        <result column="description" property="description" />
+        <result column="click" property="click" />
+        <result column="publish_time" property="publishTime" />
+        <result column="thumb" property="thumb" />
+        <result column="thumb2" property="thumb2" />
+        <result column="thumb3" property="thumb3" />
+        <result column="pickup_id" property="pickupId" />
+        <result column="type" property="type" />
+        <result column="source" property="source" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        article_id, cat_id, title, check_type, check_describe, tags, content, user_id, author, author_email, keywords, article_type, is_open, add_time, file_url, open_type, link, description, click, publish_time, thumb, thumb2, thumb3, pickup_id, type, source
+    </sql>
+
+</mapper>

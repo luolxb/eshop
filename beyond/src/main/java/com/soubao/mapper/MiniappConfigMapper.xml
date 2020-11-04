@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.MiniappConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.MiniappConfig">
+        <result column="app_id" property="appId" />
+        <result column="mch_id" property="mchId" />
+        <result column="key" property="key" />
+        <result column="app_secret" property="appSecret" />
+        <result column="apiclient_cert" property="apiclientCert" />
+        <result column="apiclient_key" property="apiclientKey" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        app_id, mch_id, key, app_secret, apiclient_cert, apiclient_key
+    </sql>
+
+</mapper>

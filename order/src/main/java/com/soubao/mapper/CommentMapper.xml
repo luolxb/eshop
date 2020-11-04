@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Comment">
+
+        <!-- id自增 -->
+        <result column="comment_id" jdbcType="INTEGER" property="commentId"/>
+
+        <!-- 商品id -->
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+
+        <!-- 订单id -->
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+
+        <!-- 订单商品id -->
+        <result column="rec_id" jdbcType="INTEGER" property="recId"/>
+
+        <!-- 门店 -->
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+
+        <!-- 店铺id -->
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+
+        <!-- 用户id -->
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+
+        <!-- 评论时间 -->
+        <result column="add_time" jdbcType="INTEGER" property="addTime"/>
+
+        <!-- 评论ip地址 -->
+        <result column="ip_address" jdbcType="VARCHAR" property="ipAddress"/>
+
+        <!-- 是否显示;0:不显示；1:显示 -->
+        <result column="is_show" jdbcType="INTEGER" property="isShow"/>
+        <result column="spec_key_name" jdbcType="VARCHAR" property="specKeyName"/>
+
+        <!-- 商品评价等级，好 中 差 -->
+        <result column="goods_rank" jdbcType="DECIMAL" property="goodsRank"/>
+
+        <!-- 点赞人数 -->
+        <result column="zan_num" jdbcType="INTEGER" property="zanNum"/>
+        <result column="zan_userid" jdbcType="VARCHAR" property="zanUserid"/>
+
+        <!-- 评论回复数 -->
+        <result column="reply_num" jdbcType="INTEGER" property="replyNum"/>
+
+        <!-- 是否匿名评价0:是；1不是 -->
+        <result column="is_anonymous" jdbcType="INTEGER" property="isAnonymous"/>
+
+        <!-- 印象标签 -->
+        <result column="impression" jdbcType="VARCHAR" property="impression"/>
+
+        <!-- 假删除标识;1:删除,0:未删除 -->
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+
+        <!-- 上级评论ID -->
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+
+        <!-- 订单号 -->
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn"/>
+
+        <!-- 评论内容 -->
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+
+        <!-- 晒单图片 -->
+        <result column="img" jdbcType="LONGVARCHAR" property="img"/>
+
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+
+        <result column="head_pic" jdbcType="VARCHAR" property="headPic"/>
+    </resultMap>
+
+    <resultMap id="GoodsCommentStatisticResultMap" type="com.soubao.entity.GoodsCommentStatistic">
+        <result column="img_sum" jdbcType="INTEGER" property="imgSum"/>
+        <result column="high_sum" jdbcType="INTEGER" property="highSum"/>
+        <result column="center_sum" jdbcType="INTEGER" property="centerSum"/>
+        <result column="low_sum" jdbcType="INTEGER" property="lowSum"/>
+        <result column="total_sum" jdbcType="INTEGER" property="totalSum"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+    </resultMap>
+    <select id="selectGoodsCommentStatistic" resultMap="GoodsCommentStatisticResultMap">
+        select sum(case when img !='' and img not like 'N;%' then 1 else 0 end) as img_sum,
+        sum(case when goods_rank &gt;= 4 and goods_rank &lt;= 5 then 1 else 0 end) as high_sum,
+        sum(case when goods_rank &gt;= 3 and goods_rank &lt;4 then 1 else 0 end) as center_sum,
+        sum(case when goods_rank &lt; 3 then 1 else 0 end) as low_sum,
+        count(comment_id) as total_sum,
+        goods_id
+        from comment
+        where is_show = 1 and user_id &gt; 0 and deleted = 0
+        and goods_id in
+        <foreach collection="goodsIds" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        group by goods_id
+    </select>
+
+</mapper>

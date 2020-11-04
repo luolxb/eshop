@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.RegionMapper">
+  <resultMap id="BaseResultMap" type="com.soubao.entity.Region">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    
+    <!-- 0普通，1热门城市 -->
+    <result column="is_hot" jdbcType="INTEGER" property="isHot" />
+    <result column="name" jdbcType="LONGVARCHAR" property="name" />
+  </resultMap>
+  <select id="selectByRegionId" resultMap="BaseResultMap">
+    select * from region where id = #{regionId}
+  </select>
+</mapper>

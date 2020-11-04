@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.FreightRegionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.FreightRegion">
+        <result column="template_id" property="templateId" />
+        <result column="config_id" property="configId" />
+        <result column="region_id" property="regionId" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <resultMap id="WithRegion" type="com.soubao.entity.FreightRegion" extends="BaseResultMap">
+        <association property="region" javaType="com.soubao.entity.Region" select="com.soubao.dao.RegionMapper.selectByRegionId" column="region_id">
+            <result column="name" jdbcType="LONGVARCHAR" property="name" />
+        </association>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        template_id, config_id, region_id, store_id
+    </sql>
+    <select id="selectFreightRegion" resultMap="WithRegion">
+         select * from freight_region where config_id = #{configId}
+    </select>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.soubao.entity.Article">
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    
+    <!-- 类别ID -->
+    <result column="cat_id" jdbcType="SMALLINT" property="catId" />
+    
+    <!-- 文章标题 -->
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    
+    <!-- 文章作者 -->
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    
+    <!-- 作者邮箱 -->
+    <result column="author_email" jdbcType="VARCHAR" property="authorEmail" />
+    
+    <!-- 关键字 -->
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="article_type" jdbcType="INTEGER" property="articleType" />
+    <result column="is_open" jdbcType="INTEGER" property="isOpen" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    
+    <!-- 附件地址 -->
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="open_type" jdbcType="INTEGER" property="openType" />
+    
+    <!-- 链接地址 -->
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    
+    <!-- 浏览量 -->
+    <result column="click" jdbcType="INTEGER" property="click" />
+    
+    <!-- 文章预告发布时间 -->
+    <result column="publish_time" jdbcType="INTEGER" property="publishTime" />
+    
+    <!-- 文章缩略图 -->
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    
+    <!-- 文章摘要 -->
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.AdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Admin">
+        <id column="admin_id" property="adminId" />
+        <result column="user_name" property="userName" />
+        <result column="email" property="email" />
+        <result column="password" property="password" />
+        <result column="add_time" property="addTime" />
+        <result column="last_login" property="lastLogin" />
+        <result column="last_ip" property="lastIp" />
+        <result column="nav_list" property="navList" />
+        <result column="lang_type" property="langType" />
+        <result column="paypwd" property="paypwd" />
+        <result column="role_id" property="roleId" />
+        <result column="suppliers_id" property="suppliersId" />
+        <result column="site_id" property="siteId" />
+        <result column="open_teach" property="openTeach" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        admin_id, user_name, email, password, add_time, last_login, last_ip, nav_list, lang_type, paypwd, role_id, suppliers_id, site_id, open_teach
+    </sql>
+
+</mapper>

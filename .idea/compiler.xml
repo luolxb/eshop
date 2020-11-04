@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <addNotNullAssertions enabled="false" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="user" />
+        <module name="gateway" />
+        <module name="auth" />
+        <module name="beyond" />
+        <module name="order" />
+        <module name="mall" />
+        <module name="seller" />
+        <module name="server" />
+        <module name="soubao-spring-boot-starter" />
+        <module name="admin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin" target="1.8" />
+      <module name="auth" target="1.8" />
+      <module name="beyond" target="1.8" />
+      <module name="gateway" target="1.8" />
+      <module name="mall" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="seller" target="1.8" />
+      <module name="server" target="1.8" />
+      <module name="soubao-spring-boot-starter" target="1.8" />
+      <module name="user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin" options="-parameters" />
+      <module name="auth" options="-parameters" />
+      <module name="beyond" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="mall" options="-parameters" />
+      <module name="order" options="-parameters" />
+      <module name="seller" options="-parameters" />
+      <module name="server" options="-parameters" />
+      <module name="soubao-spring-boot-starter" options="-parameters" />
+      <module name="user" options="-parameters" />
+    </option>
+  </component>
+</project>

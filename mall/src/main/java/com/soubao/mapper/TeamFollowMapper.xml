@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TeamFollowMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.TeamFollow">
+        <id column="follow_id" property="followId" />
+        <result column="follow_user_id" property="followUserId" />
+        <result column="follow_user_nickname" property="followUserNickname" />
+        <result column="follow_user_head_pic" property="followUserHeadPic" />
+        <result column="follow_time" property="followTime" />
+        <result column="order_id" property="orderId" />
+        <result column="found_id" property="foundId" />
+        <result column="found_user_id" property="foundUserId" />
+        <result column="team_id" property="teamId" />
+        <result column="status" property="status" />
+        <result column="is_win" property="isWin" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        follow_id, follow_user_id, follow_user_nickname, follow_user_head_pic, follow_time, order_id, found_id, found_user_id, team_id, status, is_win
+    </sql>
+
+</mapper>

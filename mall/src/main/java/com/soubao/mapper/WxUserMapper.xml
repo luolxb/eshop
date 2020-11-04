@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.WxUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.WxUser">
+    <result column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="wxname" property="wxname" />
+        <result column="aeskey" property="aeskey" />
+        <result column="encode" property="encode" />
+        <result column="appid" property="appid" />
+        <result column="appsecret" property="appsecret" />
+        <result column="wxid" property="wxid" />
+        <result column="weixin" property="weixin" />
+        <result column="headerpic" property="headerpic" />
+        <result column="token" property="token" />
+        <result column="mutual_token" property="mutualToken" />
+        <result column="create_time" property="createTime" />
+        <result column="updatetime" property="updatetime" />
+        <result column="tplcontentid" property="tplcontentid" />
+        <result column="share_ticket" property="shareTicket" />
+        <result column="share_dated" property="shareDated" />
+        <result column="authorizer_access_token" property="authorizerAccessToken" />
+        <result column="authorizer_refresh_token" property="authorizerRefreshToken" />
+        <result column="authorizer_expires" property="authorizerExpires" />
+        <result column="type" property="type" />
+        <result column="web_access_token" property="webAccessToken" />
+        <result column="web_refresh_token" property="webRefreshToken" />
+        <result column="web_expires" property="webExpires" />
+        <result column="qr" property="qr" />
+        <result column="menu_config" property="menuConfig" />
+        <result column="wait_access" property="waitAccess" />
+        <result column="host" property="host" />
+        <result column="apiurl" property="apiurl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        uid, wxname, aeskey, encode, appid, appsecret, wxid, weixin, headerpic, token, mutual_token, create_time, updatetime, tplcontentid, share_ticket, share_dated, authorizer_access_token, authorizer_refresh_token, authorizer_expires, type, web_access_token, web_refresh_token, web_expires, qr, menu_config, wait_access, host, apiurl
+    </sql>
+
+</mapper>

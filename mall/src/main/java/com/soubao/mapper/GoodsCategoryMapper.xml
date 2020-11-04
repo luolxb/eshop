@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsCategory">
+
+        <!-- 商品分类id -->
+        <result column="id" jdbcType="SMALLINT" property="id"/>
+
+        <!-- 商品分类名称 -->
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+
+        <!-- 手机端显示的商品分类名 -->
+        <result column="mobile_name" jdbcType="VARCHAR" property="mobileName"/>
+
+        <!-- 父id -->
+        <result column="parent_id" jdbcType="SMALLINT" property="parentId"/>
+
+        <!-- 家族图谱 -->
+        <result column="parent_id_path" jdbcType="VARCHAR" property="parentIdPath"/>
+
+        <!-- 等级 -->
+        <result column="level" jdbcType="INTEGER" property="level"/>
+
+        <!-- 顺序排序 -->
+        <result column="sort_order" jdbcType="INTEGER" property="sortOrder"/>
+
+        <!-- 是否显示 -->
+        <result column="is_show" jdbcType="INTEGER" property="isShow"/>
+
+        <!-- 分类图片 -->
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+
+        <!-- 是否推荐为热门分类 -->
+        <result column="is_hot" jdbcType="INTEGER" property="isHot"/>
+
+        <!-- 分类分组默认0 -->
+        <result column="cat_group" jdbcType="INTEGER" property="catGroup"/>
+
+        <!-- 佣金比例 -->
+        <result column="commission" jdbcType="INTEGER" property="commission"/>
+
+        <!-- 分佣比例用于分销 -->
+        <result column="commission_rate" jdbcType="INTEGER" property="commissionRate"/>
+
+        <!-- 对应的类型id(商品模型ID) -->
+        <result column="type_id" jdbcType="INTEGER" property="typeId"/>
+        <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName"/>
+    </resultMap>
+    <resultMap id="CatBrand" type="com.soubao.entity.GoodsCategory" extends="BaseResultMap">
+        <collection property="brands" ofType="com.soubao.entity.Brand">
+            <id column="b_id" property="id"/>
+            <result column="b_name" property="name"/>
+        </collection>
+    </resultMap>
+    <select id="selectSecAndThirdCategoryListByFirstId" resultMap="BaseResultMap">
+    select id, mobile_name, image, `level`, parent_id, sort_order
+    from goods_category
+    where parent_id_path LIKE  concat(concat("0\_",#{id}),"\_%") and is_show=1 and `level` in (2,3)
+    order by `level` asc, sort_order asc
+  </select>
+    <select id="selectCategoryWithBrand" resultMap="CatBrand">
+      select IFNULL(c.id, 0) as id ,IFNULL(c.NAME, "默认") as name,b.id as b_id,b.name as b_name
+      from goods_category c
+      RIGHT JOIN brand b on b.cat_id1 = c.id
+      ORDER BY c.sort_order asc
+  </select>
+    <select id="selectGoodsCategoryWithGoodsType" resultMap="BaseResultMap">
+        select c.*,t.name as goods_type_name from goods_category c
+        LEFT JOIN goods_type t on c.type_id = t.id
+        where c.parent_id = #{parentId}
+    </select>
+</mapper>

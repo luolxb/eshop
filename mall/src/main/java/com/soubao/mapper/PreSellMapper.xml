@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.PreSellMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.PreSell">
+        <id column="pre_sell_id" property="preSellId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="item_id" property="itemId"/>
+        <result column="item_name" property="itemName"/>
+        <result column="title" property="title"/>
+        <result column="desc" property="desc"/>
+        <result column="deposit_goods_num" property="depositGoodsNum"/>
+        <result column="deposit_order_num" property="depositOrderNum"/>
+        <result column="stock_num" property="stockNum"/>
+        <result column="sell_start_time" property="sellStartTime"/>
+        <result column="sell_end_time" property="sellEndTime"/>
+        <result column="pay_start_time" property="payStartTime"/>
+        <result column="pay_end_time" property="payEndTime"/>
+        <result column="deposit_price" property="depositPrice"/>
+        <result column="price_ladder" property="priceLadder"/>
+        <result column="delivery_time_desc" property="deliveryTimeDesc"/>
+        <result column="store_id" property="storeId"/>
+        <result column="is_finished" property="isFinished"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pre_sell_id, goods_id, goods_name, item_id, item_name, title, desc, deposit_goods_num, deposit_order_num, stock_num, sell_start_time, sell_end_time, pay_start_time, pay_end_time, deposit_price, price_ladder, delivery_time_desc, store_id, is_finished, status
+    </sql>
+
+    <select id="hashTable" resultType="Integer">
+        SELECT count(*)
+        FROM information_schema.TABLES t
+        WHERE t.TABLE_SCHEMA = #{dataBaseName}
+        AND t.TABLE_NAME = #{tableName}
+    </select>
+
+</mapper>

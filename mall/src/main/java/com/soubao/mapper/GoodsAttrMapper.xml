@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsAttrMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsAttr">
+        <id column="goods_attr_id" property="goodsAttrId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="attr_id" property="attrId" />
+        <result column="attr_value" property="attrValue" />
+        <result column="attr_price" property="attrPrice" />
+        <association property="goodsAttribute" javaType="com.soubao.entity.GoodsAttribute">
+            <id property="attrId" column="attr_id"/>
+            <result column="attr_name" property="attrName" />
+            <result column="type_id" property="typeId" />
+            <result column="attr_index" property="attrIndex" />
+            <result column="attr_type" property="attrType" />
+            <result column="attr_input_type" property="attrInputType" />
+            <result column="attr_values" property="attrValues" />
+            <result column="order" property="order" />
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        goods_attr_id, goods_id, attr_id, attr_value, attr_price
+    </sql>
+    <select id="selectAttrByGoodsId" resultMap="BaseResultMap">
+        select * from goods_attr a, goods_attribute b
+        where a.attr_id = b.attr_id
+        and a.goods_id = #{goods_id}
+    </select>
+    <select id="selectAttrForGoodsList" resultMap="BaseResultMap">
+        SELECT any_value(ga.attr_id) as attr_id,any_value(ga.attr_value) as attr_value,any_value(gab.attr_name) as attr_name
+        FROM
+        goods_attr ga,
+        goods g,
+        goods_attribute gab
+        WHERE
+        g.goods_id = ga.goods_id
+        AND ga.attr_id = gab.attr_id
+        <if test="goodsCategory != null and goodsCategory.id != null and goodsCategory.id != ''">
+            AND g.cat_id${goodsCategory.level} = #{goodsCategory.id}
+        </if>
+        AND g.is_on_sale = 1
+        AND g.goods_state = 1
+        AND ga.attr_value != ''
+        <if test="noInAttrIds.size() > 0">
+            AND ga.attr_id not in
+            <foreach collection="noInAttrIds" item="id" index="index"
+                     open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+        </if>
+        GROUP BY ga.attr_value,gab.attr_name ORDER BY any_value(gab.`order`)
+    </select>
+</mapper>

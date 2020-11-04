@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreDistributMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreDistribut">
+    <result column="id" property="id" />
+        <result column="switch" property="switchs" />
+        <result column="condition" property="condition" />
+        <result column="regrade" property="regrade" />
+        <result column="first_rate" property="firstRate" />
+        <result column="second_rate" property="secondRate" />
+        <result column="third_rate" property="thirdRate" />
+        <result column="date" property="date" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        switch, condition, distribut_pattern, regrade, first_rate, second_rate, third_rate, date, store_id
+    </sql>
+
+</mapper>

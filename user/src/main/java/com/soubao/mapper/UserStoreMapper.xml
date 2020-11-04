@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.UserStoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.UserStore">
+    <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="store_name" property="storeName" />
+        <result column="true_name" property="trueName" />
+        <result column="qq" property="qq" />
+        <result column="mobile" property="mobile" />
+        <result column="store_img" property="storeImg" />
+        <result column="store_time" property="storeTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, store_name, true_name, qq, mobile, store_img, store_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Order">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="master_order_sn" jdbcType="VARCHAR" property="masterOrderSn"/>
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="pay_status" jdbcType="INTEGER" property="payStatus"/>
+        <result column="shipping_status" jdbcType="INTEGER" property="shippingStatus"/>
+        <result column="consignee" jdbcType="VARCHAR" property="consignee"/>
+        <result column="country" jdbcType="INTEGER" property="country"/>
+        <result column="province" jdbcType="INTEGER" property="province"/>
+        <result column="city" jdbcType="INTEGER" property="city"/>
+        <result column="district" jdbcType="INTEGER" property="district"/>
+        <result column="twon" jdbcType="INTEGER" property="twon"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="zipcode" jdbcType="VARCHAR" property="zipcode"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="shipping_code" jdbcType="VARCHAR" property="shippingCode"/>
+        <result column="shipping_name" jdbcType="VARCHAR" property="shippingName"/>
+        <result column="shipping_price" jdbcType="DECIMAL" property="shippingPrice"/>
+        <result column="shipping_time" jdbcType="INTEGER" property="shippingTime"/>
+        <result column="pay_code" jdbcType="VARCHAR" property="payCode"/>
+        <result column="pay_name" jdbcType="VARCHAR" property="payName"/>
+        <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle"/>
+        <result column="taxpayer" jdbcType="VARCHAR" property="taxpayer"/>
+        <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+        <result column="user_money" jdbcType="DECIMAL" property="userMoney"/>
+        <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice"/>
+        <result column="integral" jdbcType="INTEGER" property="integral"/>
+        <result column="integral_money" jdbcType="DECIMAL" property="integralMoney"/>
+        <result column="order_amount" jdbcType="DECIMAL" property="orderAmount"/>
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount"/>
+        <result column="paid_money" jdbcType="DECIMAL" property="paidMoney"/>
+        <result column="add_time" jdbcType="INTEGER" property="addTime"/>
+        <result column="confirm_time" jdbcType="INTEGER" property="confirmTime"/>
+        <result column="pay_time" jdbcType="INTEGER" property="payTime"/>
+        <result column="transaction_id" jdbcType="VARCHAR" property="transactionId"/>
+        <result column="prom_id" jdbcType="INTEGER" property="promId"/>
+        <result column="prom_type" jdbcType="INTEGER" property="promType"/>
+        <result column="order_prom_id" jdbcType="INTEGER" property="orderPromId"/>
+        <result column="order_prom_amount" jdbcType="DECIMAL" property="orderPromAmount"/>
+        <result column="discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="user_note" jdbcType="VARCHAR" property="userNote"/>
+        <result column="admin_note" jdbcType="VARCHAR" property="adminNote"/>
+        <result column="parent_sn" jdbcType="VARCHAR" property="parentSn"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+        <result column="order_store_id" jdbcType="INTEGER" property="orderStoreId"/>
+        <result column="is_comment" jdbcType="INTEGER" property="isComment"/>
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+        <result column="order_statis_id" jdbcType="INTEGER" property="orderStatisId"/>
+    </resultMap>
+
+    <resultMap id="OrderDayReport" type="com.soubao.vo.OrderDayReport">
+        <result column="days" property="days"/>
+        <result column="order_count" property="orderCount"/>
+        <result column="total_amount" property="totalAmount"/>
+        <result column="shipping_price" property="shippingPrice"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="coupon_price" property="couponPrice"/>
+        <result column="order_prom_amount" property="orderPromAmount"/>
+        <result column="cost_price" property="costPrice"/>
+    </resultMap>
+
+    <select id="getOrderDayReportList" resultMap="OrderDayReport">
+        SELECT
+        d.days, IFNULL(order_count,0) as order_count, IFNULL(total_amount,0) as total_amount, IFNULL(shipping_price,0)
+        as shipping_price,IFNULL(goods_price,0) as goods_price
+        FROM
+        (
+        SELECT
+        @cdate := date_add(@cdate, INTERVAL - 1 DAY) days
+        FROM
+        (
+        SELECT
+        @cdate := date_add(from_unixtime(#{endTime} , '%Y-%m-%d'), INTERVAL + 1 DAY)
+        FROM
+        `order`
+        LIMIT #{dayNum}
+        ) t1
+        ) d
+        LEFT JOIN
+        (
+        SELECT
+        COUNT(*) AS order_count,
+        sum(total_amount) AS total_amount,sum(shipping_price) AS shipping_price,sum(goods_price) AS goods_price,
+        FROM_UNIXTIME(add_time, '%Y-%m-%d') AS days
+        FROM
+        `order`
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        GROUP BY
+        days
+        )
+        o ON o.days = d.days ORDER BY days desc
+    </select>
+
+    <select id="getOrderDayFinanceList" resultMap="OrderDayReport">
+        SELECT
+        d.days,
+        IFNULL(order_count, 0) AS order_count,
+        IFNULL(goods_price, 0) AS goods_price,
+        IFNULL(total_amount, 0) AS total_amount,
+        IFNULL(cost_price, 0) AS cost_price,
+        IFNULL(shipping_price, 0) AS shipping_price,
+        IFNULL(coupon_price, 0) AS coupon_price,
+        IFNULL(order_prom_amount, 0) AS order_prom_amount
+        FROM
+        (
+        SELECT
+        @cdate := date_add(@cdate, INTERVAL - 1 DAY) days
+        FROM
+        (
+        SELECT
+        @cdate := date_add(
+        from_unixtime(#{endTime}, '%Y-%m-%d'),
+        INTERVAL + 1 DAY
+        )
+        FROM
+        `order`
+        LIMIT #{dayNum}
+        ) t1
+        ) d
+        LEFT JOIN (
+        SELECT
+        COUNT(*) AS order_count,
+        sum(o.total_amount) AS total_amount,
+        sum(o.goods_price) AS goods_price,
+        sum(o.shipping_price) AS shipping_price,
+        sum(o.coupon_price) AS coupon_price,
+        sum(o.order_prom_amount) AS order_prom_amount,
+        FROM_UNIXTIME(o.add_time, '%Y-%m-%d') AS days,
+        sum(og.cost_price) AS cost_price
+        FROM
+        `order` o
+        LEFT JOIN order_goods og ON og.order_id = o.order_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        GROUP BY
+        days
+        ) o ON o.days = d.days
+        ORDER BY
+        days DESC
+    </select>
+
+    <resultMap id="SalesRanking" type="com.soubao.vo.SalesRanking">
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
+        <result column="sale_num" property="saleNum"/>
+        <result column="sale_amount" property="saleAmount"/>
+    </resultMap>
+
+    <select id="getSalesRankingPage" resultMap="SalesRanking">
+        SELECT
+        any_value (og.goods_name) AS goods_name,
+        any_value (og.goods_sn) AS goods_sn,
+        SUM(og.goods_num) AS sale_num,
+        SUM(
+        og.goods_num * og.goods_price
+        ) AS sale_amount
+        FROM
+        order_goods og
+        LEFT JOIN `order` o ON o.order_id = og.order_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        GROUP BY
+        og.goods_id
+        ORDER BY
+        sale_amount DESC
+    </select>
+
+    <resultMap id="StoreRanking" type="com.soubao.vo.StoreRanking">
+        <result column="store_id" property="storeId"/>
+        <result column="num" property="orderNum"/>
+        <result column="amount" property="amount"/>
+    </resultMap>
+
+    <select id="getStoreRankingPage" resultMap="StoreRanking">
+        SELECT
+        store_id,
+        COUNT(*) AS num,
+        SUM(total_amount) AS amount
+        FROM `order`
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <resultMap id="SaleDayDetails" type="com.soubao.vo.SaleDayDetails">
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="goods_sn" property="goodsSn"/>
+        <result column="num" property="goodsNum"/>
+        <result column="price" property="goodsPrice"/>
+        <result column="days" property="days"/>
+    </resultMap>
+
+    <select id="getSaleDayDetailsPage" resultMap="SaleDayDetails">
+        SELECT
+	        any_value (og.goods_id) AS goods_id,
+	        any_value (og.goods_name) AS goods_name,
+	        any_value (og.goods_sn) AS goods_sn,
+	        SUM(og.goods_num) AS num,
+	        any_value (og.goods_price) AS price,
+	        FROM_UNIXTIME(o.add_time, "%Y-%m-%d") AS days
+        FROM
+	        order_goods og
+        LEFT JOIN `order` o ON o.order_id = og.order_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectOrderExportData" resultType="com.soubao.vo.OrderExcel">
+        SELECT
+            o.order_sn,
+            from_unixtime( o.add_time, '%Y/%m/%d' ) AS create_time,
+            o.consignee,
+            o.province,
+            o.city,
+            o.district,
+            o.twon,
+            o.address,
+            o.mobile,
+            o.goods_price,
+            o.order_amount,
+            o.pay_name,
+            o.pay_status,
+            o.shipping_status,
+            SUM( og.goods_num ) AS goods_num,
+        group_concat('商品编号：', og.goods_sn, ' 商品名称：', og.goods_name,
+        CASE og.spec_key_name
+        WHEN '' THEN ''
+        ELSE concat( ' 规格：', og.spec_key_name )
+        END,
+        ' 数量：',
+        og.goods_num SEPARATOR '
+'
+        ) AS goods_info
+        FROM
+        `order` o
+        LEFT JOIN order_goods og ON og.order_id = o.order_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+    <select id="selectUserOrderStatisticsList" resultType="com.soubao.vo.UserOrderStatistics">
+        SELECT
+        user_id,
+        COUNT(order_id) AS order_count,
+        SUM(total_amount) AS total_amount
+        FROM `order`
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+    <select id="selectUserOrderSumByUserIds" resultType="com.soubao.dto.UserOrderSum">
+        SELECT user_id, SUM(total_amount) AS order_sum
+        FROM `order`
+        WHERE order_status IN (2, 4) AND pay_status = 1 AND user_id IN
+        <foreach collection="userIds" item="item" separator="," open="(" close=")"> #{item} </foreach>
+        GROUP BY user_id;
+    </select>
+    <select id="getOrderAndPickOrderPage" resultType="com.soubao.entity.vo.OrderAndPickOrderVo">
+        select  * from (
+        SELECT
+          o.`order_id` orderId,
+          o.`order_sn` orderSn,
+          NULL pickOrderId,
+          NULL pickOrderSn,
+          og.`goods_id` goodsId,
+          o.pay_status orderStatus,
+          NULL pickOrderStatus,
+          o.`add_time` ADDTIME,
+          og.`goods_price` goodsPrice,
+          o.`store_id` storeId,
+          og.`goods_name` goodsName
+        FROM
+          bb2_order.order o
+          JOIN order_goods og
+            ON o.`order_id` = og.`order_id`
+        WHERE o.`user_id` = #{userId}
+        UNION
+        ALL
+        SELECT
+          o.`order_id` orderId,
+          o.`order_sn` orderSn,
+          po.pick_order_id pickOrderId,
+          po.pick_order_sn pickOrderSn,
+          og.`goods_id` goodsId,
+          NULL orderStatus,
+          po.pick_order_status pickOrderStatus,
+          po.`add_time` ADDTIME,
+          og.`goods_price` goodsPrice,
+          o.`store_id` storeId,
+          og.`goods_name` goodsName
+        FROM
+          pick_order po
+          JOIN bb2_order.order o
+            ON po.order_id = o.`order_id`
+          JOIN order_goods og
+            ON o.`order_id` = og.`order_id`
+        WHERE o.`user_id` = #{userId}
+        ) t
+        order by t.addtime desc
+    </select>
+
+</mapper>

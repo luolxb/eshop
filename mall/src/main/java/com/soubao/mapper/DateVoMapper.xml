@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.DateVoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.vo.DateVo">
+        <result column="visit_date" property="date"/>
+        <collection property="visitList" ofType="com.soubao.entity.GoodsVisit">
+            <result column="visit_id" property="visitId" />
+            <result column="goods_id" property="goodsId" />
+            <result column="visit_time" property="visitTime" />
+            <result column="cat_id3" property="catId3" />
+
+            <result column="goods_name" property="goodsName"/>
+            <result column="shop_price" property="shopPrice"/>
+            <result column="is_virtual" property="isVirtual"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectVisitByDateGroup" resultMap="BaseResultMap">
+        SELECT
+            FROM_UNIXTIME( gv.visit_time, '%Y年%m月%d日' ) AS visit_date,
+            gv.visit_id,
+            gv.goods_id,
+            g.goods_name,
+            g.shop_price,
+            g.cat_id3,
+            g.is_virtual
+        FROM
+            goods_visit gv,
+            goods g
+        <where>
+            gv.goods_id = g.goods_id
+            AND
+            ${ew.sqlSegment}
+        </where>
+        ORDER BY
+            gv.visit_time DESC
+    </select>
+
+
+</mapper>

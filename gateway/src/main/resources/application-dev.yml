@@ -1,0 +1,18 @@
+server:
+  port: 9090
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: public
+          uri: http://localhost:9091
+          predicates:
+            - Path=/public/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/

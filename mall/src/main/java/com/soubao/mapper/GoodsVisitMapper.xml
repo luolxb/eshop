@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsVisitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsVisit">
+        <id column="visit_id" property="visitId"/>
+        <result column="user_id" property="userId"/>
+        <result column="visit_time" property="visitTime"/>
+        <result column="cat_id1" property="catId1"/>
+        <result column="cat_id2" property="catId2"/>
+        <result column="cat_id3" property="catId3"/>
+        <result column="goods_id" property="goodsId"/>
+
+        <result column="goods_name" property="goodsName"/>
+        <result column="shop_price" property="shopPrice"/>
+        <result column="is_virtual" property="isVirtual"/>
+        <result column="cat_visit_count" property="catVisitCount"/>
+        <result column="cat_name" property="catName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        goods_id, user_id, visit_time, cat_id1, cat_id2, cat_id3, visit_id
+    </sql>
+
+    <select id="selectVisitCatCount" resultMap="BaseResultMap">
+        SELECT
+	        COUNT(gv.cat_id3) AS cat_visit_count,
+	        gv.cat_id3 AS cat_id3,
+	        gc.name AS cat_name
+        FROM
+	        goods_visit gv,
+	        goods_category gc
+        WHERE
+	        gv.user_id = #{user.userId}
+        AND
+	        gc.id = gv.cat_id3
+        GROUP BY
+	        gv.cat_id3
+    </select>
+
+</mapper>

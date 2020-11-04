@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsAttributeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsAttribute">
+        <id column="attr_id" property="attrId" />
+        <result column="attr_name" property="attrName" />
+        <result column="type_id" property="typeId" />
+        <result column="attr_index" property="attrIndex" />
+        <result column="attr_type" property="attrType" />
+        <result column="attr_input_type" property="attrInputType" />
+        <result column="attr_values" property="attrValues" />
+        <result column="order" property="order" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        attr_id, attr_name, type_id, attr_index, attr_type, attr_input_type, attr_values, order
+    </sql>
+
+</mapper>

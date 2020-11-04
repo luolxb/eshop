@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreReopenMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreReopen">
+        <id column="re_id" property="reId" />
+        <result column="re_grade_id" property="reGradeId" />
+        <result column="re_grade_name" property="reGradeName" />
+        <result column="re_grade_price" property="reGradePrice" />
+        <result column="re_year" property="reYear" />
+        <result column="re_pay_amount" property="rePayAmount" />
+        <result column="re_store_name" property="reStoreName" />
+        <result column="re_store_id" property="reStoreId" />
+        <result column="re_state" property="reState" />
+        <result column="re_start_time" property="reStartTime" />
+        <result column="re_end_time" property="reEndTime" />
+        <result column="re_create_time" property="reCreateTime" />
+        <result column="re_pay_cert" property="rePayCert" />
+        <result column="re_pay_cert_explain" property="rePayCertExplain" />
+        <result column="admin_note" property="adminNote" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        re_id, re_grade_id, re_grade_name, re_grade_price, re_year, re_pay_amount, re_store_name, re_store_id, re_state, re_start_time, re_end_time, re_create_time, re_pay_cert, re_pay_cert_explain, admin_note
+    </sql>
+
+</mapper>

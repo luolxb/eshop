@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreNavigationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreNavigation">
+        <id column="sn_id" property="snId" />
+        <result column="sn_title" property="snTitle" />
+        <result column="sn_store_id" property="snStoreId" />
+        <result column="sn_content" property="snContent" />
+        <result column="sn_sort" property="snSort" />
+        <result column="sn_is_show" property="snIsShow" />
+        <result column="sn_add_time" property="snAddTime" />
+        <result column="sn_url" property="snUrl" />
+        <result column="sn_new_open" property="snNewOpen" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        sn_id, sn_title, sn_store_id, sn_content, sn_sort, sn_is_show, sn_add_time, sn_url, sn_new_open
+    </sql>
+
+</mapper>

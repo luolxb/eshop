@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ExposeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Expose">
+        <id column="expose_id" property="exposeId" />
+        <result column="expose_user_id" property="exposeUserId" />
+        <result column="expose_user_name" property="exposeUserName" />
+        <result column="expose_order_sn" property="exposeOrderSn" />
+        <result column="expose_goods_id" property="exposeGoodsId" />
+        <result column="expose_goods_name" property="exposeGoodsName" />
+        <result column="expose_type_id" property="exposeTypeId" />
+        <result column="expose_type_name" property="exposeTypeName" />
+        <result column="expose_subject_id" property="exposeSubjectId" />
+        <result column="expose_subject_name" property="exposeSubjectName" />
+        <result column="expose_content" property="exposeContent" />
+        <result column="expose_pic" property="exposePic" />
+        <result column="expose_time" property="exposeTime" />
+        <result column="expose_store_id" property="exposeStoreId" />
+        <result column="expose_store_name" property="exposeStoreName" />
+        <result column="expose_state" property="exposeState" />
+        <result column="expose_handle_type" property="exposeHandleType" />
+        <result column="expose_handle_msg" property="exposeHandleMsg" />
+        <result column="expose_handle_time" property="exposeHandleTime" />
+        <result column="expose_handle_admin_id" property="exposeHandleAdminId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        expose_id, expose_user_id, expose_user_name, expose_order_sn, expose_goods_id, expose_goods_name, expose_type_id, expose_type_name, expose_subject_id, expose_subject_name, expose_content, expose_pic, expose_time, expose_store_id, expose_store_name, expose_state, expose_handle_type, expose_handle_msg, expose_handle_time, expose_handle_admin_id
+    </sql>
+
+</mapper>

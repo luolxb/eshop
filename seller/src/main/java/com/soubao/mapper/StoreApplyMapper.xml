@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreApplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreApply">
+        <result column="id" property="id" />
+        <result column="invite_user_id" property="inviteUserId" />
+        <result column="user_id" property="userId" />
+        <result column="contacts_name" property="contactsName" />
+        <result column="contacts_mobile" property="contactsMobile" />
+        <result column="contacts_email" property="contactsEmail" />
+        <result column="company_name" property="companyName" />
+        <result column="company_type" property="companyType" />
+        <result column="company_website" property="companyWebsite" />
+        <result column="company_province" property="companyProvince" />
+        <result column="company_city" property="companyCity" />
+        <result column="company_district" property="companyDistrict" />
+        <result column="company_address" property="companyAddress" />
+        <result column="company_telephone" property="companyTelephone" />
+        <result column="company_email" property="companyEmail" />
+        <result column="company_fax" property="companyFax" />
+        <result column="company_zipcode" property="companyZipcode" />
+        <result column="business_licence_number" property="businessLicenceNumber" />
+        <result column="business_licence_cert" property="businessLicenceCert" />
+        <result column="threeinone" property="threeinone" />
+        <result column="reg_capital" property="regCapital" />
+        <result column="legal_person" property="legalPerson" />
+        <result column="legal_identity_cert" property="legalIdentityCert" />
+        <result column="legal_identity" property="legalIdentity" />
+        <result column="business_date_start" property="businessDateStart" />
+        <result column="business_date_end" property="businessDateEnd" />
+        <result column="orgnization_code" property="orgnizationCode" />
+        <result column="orgnization_cert" property="orgnizationCert" />
+        <result column="attached_tax_number" property="attachedTaxNumber" />
+        <result column="tax_rate" property="taxRate" />
+        <result column="taxpayer" property="taxpayer" />
+        <result column="taxpayer_cert" property="taxpayerCert" />
+        <result column="business_scope" property="businessScope" />
+        <result column="store_name" property="storeName" />
+        <result column="seller_name" property="sellerName" />
+        <result column="store_type" property="storeType" />
+        <result column="store_address" property="storeAddress" />
+        <result column="store_person_name" property="storePersonName" />
+        <result column="store_person_mobile" property="storePersonMobile" />
+        <result column="store_person_qq" property="storePersonQq" />
+        <result column="store_person_email" property="storePersonEmail" />
+        <result column="store_person_cert" property="storePersonCert" />
+        <result column="store_person_identity" property="storePersonIdentity" />
+        <result column="bank_account_name" property="bankAccountName" />
+        <result column="bank_account_number" property="bankAccountNumber" />
+        <result column="bank_branch_name" property="bankBranchName" />
+        <result column="bank_province" property="bankProvince" />
+        <result column="bank_city" property="bankCity" />
+        <result column="main_channel" property="mainChannel" />
+        <result column="sales_volume" property="salesVolume" />
+        <result column="sku_num" property="skuNum" />
+        <result column="ec_experience" property="ecExperience" />
+        <result column="avg_price" property="avgPrice" />
+        <result column="ware_house" property="wareHouse" />
+        <result column="entity_shop" property="entityShop" />
+        <result column="sc_name" property="scName" />
+        <result column="sc_id" property="scId" />
+        <result column="sc_bail" property="scBail" />
+        <result column="sg_id" property="sgId" />
+        <result column="sg_name" property="sgName" />
+        <result column="store_class_ids" property="storeClassIds" />
+        <result column="paying_amount" property="payingAmount" />
+        <result column="paying_amount_cert" property="payingAmountCert" />
+        <result column="apply_state" property="applyState" />
+        <result column="review_msg" property="reviewMsg" />
+        <result column="add_time" property="addTime" />
+        <result column="apply_type" property="applyType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        invite_user_id, user_id, contacts_name, contacts_mobile, contacts_email, company_name, company_type, company_website, company_province, company_city, company_district, company_address, company_telephone, company_email, company_fax, company_zipcode, business_licence_number, business_licence_cert, threeinone, reg_capital, legal_person, legal_identity_cert, legal_identity, business_date_start, business_date_end, orgnization_code, orgnization_cert, attached_tax_number, tax_rate, taxpayer, taxpayer_cert, business_scope, store_name, seller_name, store_type, store_address, store_person_name, store_person_mobile, store_person_qq, store_person_email, store_person_cert, store_person_identity, bank_account_name, bank_account_number, bank_branch_name, bank_province, bank_city, main_channel, sales_volume, sku_num, ec_experience, avg_price, ware_house, entity_shop, sc_name, sc_id, sc_bail, sg_id, sg_name, store_class_ids, paying_amount, paying_amount_cert, apply_state, review_msg, add_time, apply_type
+    </sql>
+
+
+</mapper>

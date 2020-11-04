@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreGradeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreGrade">
+        <id column="sg_id" property="sgId" />
+        <result column="sg_name" property="sgName" />
+        <result column="sg_goods_limit" property="sgGoodsLimit" />
+        <result column="sg_album_limit" property="sgAlbumLimit" />
+        <result column="sg_space_limit" property="sgSpaceLimit" />
+        <result column="sg_template_limit" property="sgTemplateLimit" />
+        <result column="sg_template" property="sgTemplate" />
+        <result column="sg_price" property="sgPrice" />
+        <result column="sg_description" property="sgDescription" />
+        <result column="sg_function" property="sgFunction" />
+        <result column="sg_sort" property="sgSort" />
+        <result column="sg_act_limits" property="sgActLimits" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        sg_id, sg_name, sg_goods_limit, sg_album_limit, sg_space_limit, sg_template_limit, sg_template, sg_price, sg_description, sg_function, sg_sort, sg_act_limits
+    </sql>
+
+</mapper>

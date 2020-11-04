@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.MessageNoticeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.MessageNotice">
+        <id column="message_id" property="messageId" />
+        <result column="message_type" property="messageType" />
+        <result column="message_title" property="messageTitle" />
+        <result column="message_content" property="messageContent" />
+        <result column="send_time" property="sendTime" />
+        <result column="mmt_code" property="mmtCode" />
+        <result column="type" property="type" />
+        <result column="prom_id" property="promId" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        message_id, message_type, message_title, message_content, send_time, mmt_code, type, prom_id, store_id
+    </sql>
+
+    <resultMap id="UserMessageMap" type="com.soubao.entity.MessageNotice" extends="BaseResultMap">
+        <result column="rec_id" property="recId" />
+        <result column="is_see" property="isSee" />
+    </resultMap>
+
+    <select id="selectUserMessagePage" resultMap="UserMessageMap">
+        SELECT
+        m.*,u.is_see,u.rec_id
+        FROM
+        message_notice m
+        INNER JOIN user_message u ON u.message_id = m.message_id
+        WHERE  u.user_id = #{userMessage.userId}
+            and u.deleted = #{userMessage.deleted}
+             and u.category = 0
+        ORDER BY u.rec_id DESC
+    </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.UserMessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.UserMessage">
+        <id column="rec_id" property="recId" />
+        <result column="user_id" property="userId" />
+        <result column="message_id" property="messageId" />
+        <result column="category" property="category" />
+        <result column="is_see" property="isSee" />
+        <result column="deleted" property="deleted" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        rec_id, user_id, message_id, category, is_see, deleted, status
+    </sql>
+
+</mapper>

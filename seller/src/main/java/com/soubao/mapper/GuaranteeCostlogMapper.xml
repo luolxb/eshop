@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GuaranteeCostlogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GuaranteeCostlog">
+    <result column="id" property="id" />
+        <result column="grt_id" property="grtId" />
+        <result column="grt_name" property="grtName" />
+        <result column="store_id" property="storeId" />
+        <result column="store_name" property="storeName" />
+        <result column="admin_id" property="adminId" />
+        <result column="admin_name" property="adminName" />
+        <result column="price" property="price" />
+        <result column="add_time" property="addTime" />
+        <result column="desc" property="desc" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        grt_id, grt_name, store_id, store_name, admin_id, admin_name, price, add_time, desc
+    </sql>
+
+</mapper>

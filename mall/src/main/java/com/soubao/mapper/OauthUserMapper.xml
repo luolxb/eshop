@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OauthUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.OauthUser">
+        <id column="tu_id" property="tuId" />
+        <result column="user_id" property="userId" />
+        <result column="openid" property="openid" />
+        <result column="oauth" property="oauth" />
+        <result column="unionid" property="unionid" />
+        <result column="oauth_child" property="oauthChild" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tu_id, user_id, openid, oauth, unionid, oauth_child
+    </sql>
+
+</mapper>

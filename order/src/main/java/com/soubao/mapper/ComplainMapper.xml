@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ComplainMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Complain">
+        <id column="complain_id" property="complainId" />
+        <result column="order_id" property="orderId" />
+        <result column="order_sn" property="orderSn" />
+        <result column="order_goods_id" property="orderGoodsId" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_contact" property="userContact" />
+        <result column="store_id" property="storeId" />
+        <result column="store_name" property="storeName" />
+        <result column="complain_subject_name" property="complainSubjectName" />
+        <result column="complain_subject_id" property="complainSubjectId" />
+        <result column="complain_content" property="complainContent" />
+        <result column="complain_pic" property="complainPic" />
+        <result column="complain_time" property="complainTime" />
+        <result column="complain_handle_time" property="complainHandleTime" />
+        <result column="complain_handle_admin_id" property="complainHandleAdminId" />
+        <result column="appeal_msg" property="appealMsg" />
+        <result column="appeal_time" property="appealTime" />
+        <result column="appeal_pic" property="appealPic" />
+        <result column="final_handle_msg" property="finalHandleMsg" />
+        <result column="final_handle_time" property="finalHandleTime" />
+        <result column="final_handle_admin_id" property="finalHandleAdminId" />
+        <result column="complain_state" property="complainState" />
+        <result column="user_handle_time" property="userHandleTime" />
+        <result column="goods_name" property="goodsName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        complain_id, order_id, order_sn, order_goods_id, user_id, user_name, user_contact, store_id, store_name, complain_subject_name, complain_subject_id, complain_content, complain_pic, complain_time, complain_handle_time, complain_handle_admin_id, appeal_msg, appeal_time, appeal_pic, final_handle_msg, final_handle_time, final_handle_admin_id, complain_state, user_handle_time
+    </sql>
+
+    <select id="getComplainPage" resultMap="BaseResultMap">
+        SELECT
+        c.*,og.goods_name
+        FROM
+        complain c
+        LEFT JOIN order_goods og
+        ON og.rec_id = c.order_goods_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        ORDER BY
+        c.complain_time
+        DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SmsLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.SmsLog">
+    <result column="id" property="id" />
+        <result column="mobile" property="mobile" />
+        <result column="session_id" property="sessionId" />
+        <result column="add_time" property="addTime" />
+        <result column="code" property="code" />
+        <result column="seller_id" property="sellerId" />
+        <result column="status" property="status" />
+        <result column="msg" property="msg" />
+        <result column="scene" property="scene" />
+        <result column="error_msg" property="errorMsg" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        mobile, session_id, add_time, code, seller_id, status, msg, scene, error_msg
+    </sql>
+
+</mapper>

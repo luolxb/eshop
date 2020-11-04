@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.User">
+
+        <!-- 表id -->
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+
+        <!-- 邮件 -->
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+
+        <!-- 密码 -->
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+
+        <!-- 0 保密 1 男 2 女 -->
+        <result column="sex" jdbcType="BIT" property="sex"/>
+
+        <!-- 生日 -->
+        <result column="birthday" jdbcType="INTEGER" property="birthday"/>
+
+        <!-- 用户金额 -->
+        <result column="user_money" jdbcType="DECIMAL" property="userMoney"/>
+
+        <!-- 冻结金额 -->
+        <result column="frozen_money" jdbcType="DECIMAL" property="frozenMoney"/>
+
+        <!-- 累积分佣金额 -->
+        <result column="distribut_money" jdbcType="DECIMAL" property="distributMoney"/>
+
+        <!-- 消费积分 -->
+        <result column="pay_points" jdbcType="BIGINT" property="payPoints"/>
+
+        <!-- 支付密码 -->
+        <result column="paypwd" jdbcType="VARCHAR" property="paypwd"/>
+
+        <!-- 注册时间 -->
+        <result column="reg_time" jdbcType="INTEGER" property="regTime"/>
+
+        <!-- 最后登录时间 -->
+        <result column="last_login" jdbcType="INTEGER" property="lastLogin"/>
+
+        <!-- 最后登录ip -->
+        <result column="last_ip" jdbcType="VARCHAR" property="lastIp"/>
+
+        <!-- QQ -->
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+
+        <!-- 手机号码 -->
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+
+        <!-- 是否验证手机 -->
+        <result column="mobile_validated" jdbcType="TINYINT" property="mobileValidated"/>
+
+        <!-- 头像 -->
+        <result column="head_pic" jdbcType="VARCHAR" property="headPic"/>
+
+        <!-- 银行名称 -->
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+
+        <!-- 银行账号 -->
+        <result column="bank_card" jdbcType="VARCHAR" property="bankCard"/>
+
+        <!-- 用户真实姓名 -->
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
+
+        <!-- 身份证号 -->
+        <result column="idcard" jdbcType="VARCHAR" property="idcard"/>
+
+        <!-- 是否验证电子邮箱 -->
+        <result column="email_validated" jdbcType="BIT" property="emailValidated"/>
+
+        <!-- 第三方返回昵称 -->
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+
+        <!-- 会员等级 -->
+        <result column="level" jdbcType="BIT" property="level"/>
+
+        <!-- 会员折扣，默认1不享受 -->
+        <result column="discount" jdbcType="DECIMAL" property="discount"/>
+
+        <!-- 消费累计额度 -->
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount"/>
+
+        <!-- 是否被锁定冻结 -->
+        <result column="is_lock" jdbcType="BIT" property="isLock"/>
+
+        <!-- 是否为分销商 0 否 1 是 -->
+        <result column="is_distribut" jdbcType="BIT" property="isDistribut"/>
+
+        <!-- 第一个上级 -->
+        <result column="first_leader" jdbcType="INTEGER" property="firstLeader"/>
+
+        <!-- 第二个上级 -->
+        <result column="second_leader" jdbcType="INTEGER" property="secondLeader"/>
+
+        <!-- 第三个上级 -->
+        <result column="third_leader" jdbcType="INTEGER" property="thirdLeader"/>
+
+        <!-- 用于app 授权类似于session_id -->
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+
+        <!-- 用户下线数 -->
+        <result column="underling_number" jdbcType="INTEGER" property="underlingNumber"/>
+
+        <!-- 消息掩码 -->
+        <result column="message_mask" jdbcType="BIT" property="messageMask"/>
+
+        <!-- 推送id -->
+        <result column="push_id" jdbcType="VARCHAR" property="pushId"/>
+
+        <!-- 分销商等级 -->
+        <result column="distribut_level" jdbcType="TINYINT" property="distributLevel"/>
+
+        <!-- 小程序专属二维码 -->
+        <result column="xcx_qrcode" jdbcType="VARCHAR" property="xcxQrcode"/>
+
+        <!-- 属于哪个店铺的会员 -->
+        <result column="is_store_member" jdbcType="INTEGER" property="isStoreMember"/>
+        <result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, email, password, sex, birthday, user_money, frozen_money, distribut_money, pay_points, paypwd, reg_time, last_login, last_ip, qq, mobile, mobile_validated, head_pic, bank_name, bank_card, realname, idcard, email_validated, nickname, level, discount, total_amount, is_lock, is_distribut, first_leader, second_leader, third_leader, token, underling_number, message_mask, push_id, distribut_level, xcx_qrcode, is_store_member
+    </sql>
+
+    <resultMap id="UserDayReport" type="com.soubao.vo.UserDayReport">
+        <result column="days" property="days"/>
+        <result column="order_count" property="userCount"/>
+    </resultMap>
+
+    <select id="selectDayReport" resultMap="UserDayReport">
+    SELECT
+    d.days,
+    IFNULL(user_count, 0) AS user_count
+    FROM
+    (
+    SELECT
+    @cdate := date_add(@cdate, INTERVAL - 1 DAY) days
+    FROM
+    (
+    SELECT
+    @cdate := date_add(
+    from_unixtime(#{endTime}, '%Y-%m-%d'),
+    INTERVAL + 1 DAY
+    )
+    FROM
+    user
+    LIMIT 71
+    ) t1
+    ) d
+    LEFT JOIN (
+    SELECT
+    COUNT(*) AS user_count,
+    FROM_UNIXTIME(reg_time, '%Y-%m-%d') AS days
+    FROM
+    user
+    WHERE
+    reg_time &gt; #{startTime}
+    AND reg_time &lt; #{endTime}
+    GROUP BY
+    days
+    ) o ON o.days = d.days
+    ORDER BY
+    days DESC
+  </select>
+
+    <select id="selectUserExportData" resultType="com.soubao.vo.UserExcel">
+        SELECT
+        user_id,
+        nickname,
+        `level`,
+        mobile,
+        email,
+        reg_time,
+        last_login,
+        user_money,
+        pay_points,
+        total_amount
+        FROM
+        user
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+    <select id="selectStoreMemberCountGroup" resultType="com.soubao.dto.StoreMemberCountDto">
+        SELECT is_store_member AS store_id,count(is_store_member) AS member_count
+        FROM user
+        <if test="storeIds != null and storeIds.size() > 0">
+            WHERE is_store_member IN
+            <foreach collection="storeIds" item="item" separator="," open="(" close=")"> #{item} </foreach>
+        </if>
+        GROUP BY is_store_member
+    </select>
+    <select id="selectUserIdsByIsStoreMember" resultType="com.soubao.dto.StoreMemberIdsDto">
+        SELECT is_store_member AS store_id, user_id
+        FROM user
+        <if test="storeIds != null and storeIds.size() > 0">
+            WHERE is_store_member IN
+            <foreach collection="storeIds" item="item" separator="," open="(" close=")"> #{item} </foreach>
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreBindClassMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreBindClass">
+        <id column="bid" property="bid"/>
+        <result column="store_id" property="storeId"/>
+        <result column="commis_rate" property="commisRate"/>
+        <result column="class_1" property="class1"/>
+        <result column="class_2" property="class2"/>
+        <result column="class_3" property="class3"/>
+        <result column="state" property="state"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        bid, store_id, commis_rate, class_1, class_2, class_3, state
+    </sql>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TeamLotteryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.TeamLottery">
+    <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="order_id" property="orderId" />
+        <result column="order_sn" property="orderSn" />
+        <result column="mobile" property="mobile" />
+        <result column="team_id" property="teamId" />
+        <result column="nickname" property="nickname" />
+        <result column="head_pic" property="headPic" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, order_id, order_sn, mobile, team_id, nickname, head_pic
+    </sql>
+
+</mapper>

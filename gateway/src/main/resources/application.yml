@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: cloud-gateway-eureka
+ribbon:
+  eager-load:
+    enabled: true

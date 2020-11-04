@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SpecImageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.SpecImage">
+        <result column="goods_id" property="goodsId" />
+        <result column="spec_image_id" property="specImageId" />
+        <result column="src" property="src" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        goods_id, spec_image_id, src, store_id
+    </sql>
+
+</mapper>

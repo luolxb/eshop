@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ExpenseLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.ExpenseLog">
+    <result column="id" property="id" />
+        <result column="admin_id" property="adminId" />
+        <result column="money" property="money" />
+        <result column="integral" property="integral" />
+        <result column="type" property="type" />
+        <result column="addtime" property="addtime" />
+        <result column="log_type_id" property="logTypeId" />
+        <result column="user_id" property="userId" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        admin_id, money, integral, type, addtime, log_type_id, user_id, store_id
+    </sql>
+
+    <select id="getExpenseLogPage" resultMap="BaseResultMap">
+        SELECT
+        e.*,a.user_name
+        FROM
+        expense_log e
+        LEFT JOIN admin a
+        ON a.admin_id = e.admin_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        ORDER BY e.addtime DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TeamFoundMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.TeamFound">
+        <id column="found_id" property="foundId" />
+        <result column="found_time" property="foundTime" />
+        <result column="found_end_time" property="foundEndTime" />
+        <result column="user_id" property="userId" />
+        <result column="team_id" property="teamId" />
+        <result column="nickname" property="nickname" />
+        <result column="head_pic" property="headPic" />
+        <result column="order_id" property="orderId" />
+        <result column="join" property="join" />
+        <result column="need" property="need" />
+        <result column="price" property="price" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="status" property="status" />
+        <result column="bonus_status" property="bonusStatus" />
+        <result column="store_id" property="storeId" />
+        <result column="is_auto" property="isAuto" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        found_id, found_time, found_end_time, user_id, team_id, nickname, head_pic, order_id, `join`, need, price, goods_price, status, bonus_status, store_id, is_auto
+    </sql>
+    <select id="countTeamSuccessCount" resultType="java.lang.Integer">
+        select count(found_id) as foundCount
+        from team_found where status = 2 and team_id = #{teamId}
+    </select>
+</mapper>

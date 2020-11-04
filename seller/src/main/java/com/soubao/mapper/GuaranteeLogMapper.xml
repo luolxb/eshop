@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GuaranteeLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GuaranteeLog">
+        <id column="log_id" property="logId" />
+        <result column="log_storeid" property="logStoreid" />
+        <result column="log_storename" property="logStorename" />
+        <result column="log_grtid" property="logGrtid" />
+        <result column="log_grtname" property="logGrtname" />
+        <result column="log_msg" property="logMsg" />
+        <result column="log_addtime" property="logAddtime" />
+        <result column="log_role" property="logRole" />
+        <result column="log_userid" property="logUserid" />
+        <result column="log_username" property="logUsername" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log_id, log_storeid, log_storename, log_grtid, log_grtname, log_msg, log_addtime, log_role, log_userid, log_username
+    </sql>
+
+</mapper>

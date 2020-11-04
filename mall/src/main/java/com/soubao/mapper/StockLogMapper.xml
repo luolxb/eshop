@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StockLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StockLog">
+        <result column="id" property="id"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="goods_spec" property="goodsSpec"/>
+        <result column="order_sn" property="orderSn"/>
+        <result column="store_id" property="storeId"/>
+        <result column="muid" property="muid"/>
+        <result column="stock" property="stock"/>
+        <result column="ctime" property="ctime"/>
+        <result column="store_name" property="storeName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        goods_id, goods_name, goods_spec, order_sn, store_id, muid, stock, ctime
+    </sql>
+
+</mapper>

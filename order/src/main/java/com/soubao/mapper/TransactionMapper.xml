@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TransactionMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Transaction">
+
+        <!-- id自增 -->
+        <result column="id" jdbcType="INTEGER" property="Id"/>
+
+        <!-- 商品id -->
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+
+        <!-- 买家用户id -->
+        <result column="buyer_id" jdbcType="INTEGER" property="buyerId"/>
+
+        <!-- 卖家用户id -->
+        <result column="seller_id" jdbcType="INTEGER" property="sellerId"/>
+        <!-- 订单id -->
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+
+        <!-- 购买时间 -->
+        <result column="purchase_time" jdbcType="BIGINT" property="purchaseTime"/>
+
+        <!-- 状态 -->
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+
+</mapper>

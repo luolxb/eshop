@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Brand">
+    <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="logo" property="logo" />
+        <result column="desc" property="desc" />
+        <result column="url" property="url" />
+        <result column="sort" property="sort" />
+        <result column="cat_name" property="catName" />
+        <result column="cat_id1" property="catId1" />
+        <result column="cat_id2" property="catId2" />
+        <result column="cat_id3" property="catId3" />
+        <result column="is_hot" property="isHot" />
+        <result column="store_id" property="storeId" />
+        <result column="status" property="status" />
+    </resultMap>
+    <resultMap id="BrandPage" type="com.soubao.entity.Brand" extends="BaseResultMap">
+        <association property="cat1Name" javaType="String" select="queryCat1Name" column="cat_id1"></association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, logo, desc, url, sort, cat_name, cat_id1, cat_id2, cat_id3, is_hot, store_id, status
+    </sql>
+
+    <select id="selectAttrForGoodsList" resultMap="BaseResultMap">
+        SELECT
+        b.*
+        FROM
+        brand b,
+        goods g
+        WHERE
+        g.brand_id = b.id
+        <if test="goodsCategory != null and goodsCategory.id != null and goodsCategory.id != ''">
+            AND g.cat_id${goodsCategory.level} = #{goodsCategory.id}
+        </if>
+        AND g.is_on_sale = 1
+        AND g.goods_state = 1
+        order BY b.`sort`
+    </select>
+
+    <select id="selectBrandPage" resultMap="BrandPage">
+        SELECT
+        *
+        FROM
+        brand
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="queryCat1Name" resultType="String">
+        SELECT `name` FROM goods_category WHERE id = #{catId1}
+    </select>
+</mapper>

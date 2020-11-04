@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderStatisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.OrderStatis">
+    <result column="id" property="id" />
+        <result column="start_date" property="startDate" />
+        <result column="end_date" property="endDate" />
+        <result column="order_totals" property="orderTotals" />
+        <result column="shipping_totals" property="shippingTotals" />
+        <result column="return_totals" property="returnTotals" />
+        <result column="return_integral" property="returnIntegral" />
+        <result column="commis_totals" property="commisTotals" />
+        <result column="give_integral" property="giveIntegral" />
+        <result column="result_totals" property="resultTotals" />
+        <result column="create_date" property="createDate" />
+        <result column="store_id" property="storeId" />
+        <result column="order_prom_amount" property="orderPromAmount" />
+        <result column="coupon_price" property="couponPrice" />
+        <result column="integral" property="integral" />
+        <result column="distribut" property="distribut" />
+        <result column="pay_money" property="payMoney" />
+        <result column="discount" property="discount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        start_date, end_date, order_totals, shipping_totals, return_totals, return_integral, commis_totals, give_integral, result_totals, create_date, store_id, order_prom_amount, coupon_price, integral, distribut, pay_money, discount
+    </sql>
+
+</mapper>

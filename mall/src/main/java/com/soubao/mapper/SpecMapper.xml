@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SpecMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Spec">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="order" property="order" />
+        <result column="is_upload_image" property="isUploadImage" />
+        <result column="search_index" property="searchIndex" />
+        <result column="cat_id1" property="catId1" />
+        <result column="cat_id2" property="catId2" />
+        <result column="cat_id3" property="catId3" />
+        <result column="type_id" property="typeId" />
+        <collection  property="specItemList" ofType="com.soubao.entity.SpecItem">
+            <result column="spec_item_id" property="id" />
+            <result column="item" property="item" />
+            <result column="src" property="src" />
+            <result column="store_id" property="storeId" />
+        </collection >
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name, order, is_upload_image, search_index, cat_id1, cat_id2, cat_id3
+    </sql>
+    <select id="selectSpecWithItem" resultMap="BaseResultMap">
+        SELECT
+        s.`name`,si.item,si.id as spec_item_id,simg.src
+        FROM
+        spec s
+        LEFT JOIN spec_item si on s.id = si.spec_id
+        LEFT JOIN spec_image simg ON simg.spec_image_id = si.id
+        WHERE
+        si.id in
+        <foreach collection="specItemIds" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        ORDER BY s.`name`,s.`order`
+    </select>
+    <select id="selectStoreBindSpecAndItem" resultMap="BaseResultMap">
+        SELECT s.*,si.id as spec_item_id,si.store_id,si.item FROM spec s
+        INNER JOIN spec_type st ON st.spec_id = s.id
+        LEFT JOIN spec_item si on si.spec_id = st.spec_id and si.store_id = #{storeId}
+        where st.type_id = #{typeId}
+    </select>
+    <select id="selectSpecByTypeId" resultMap="BaseResultMap">
+        SELECT * FROM spec s
+        left JOIN spec_type st ON s.id = st.spec_id where st.type_id = #{typeId}
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreAddressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreAddress">
+        <id column="store_address_id" property="storeAddressId" />
+        <result column="consignee" property="consignee" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="district_id" property="districtId" />
+        <result column="town_id" property="townId" />
+        <result column="address" property="address" />
+        <result column="zip_code" property="zipCode" />
+        <result column="mobile" property="mobile" />
+        <result column="is_default" property="isDefault" />
+        <result column="type" property="type" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        store_address_id, consignee, province_id, city_id, district_id, town_id, address, zip_code, mobile, is_default, type, store_id
+    </sql>
+</mapper>

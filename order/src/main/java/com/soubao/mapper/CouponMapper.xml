@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.CouponMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Coupon">
+    <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="use_type" property="useType" />
+        <result column="money" property="money" />
+        <result column="condition" property="condition" />
+        <result column="createnum" property="createnum" />
+        <result column="send_num" property="sendNum" />
+        <result column="use_num" property="useNum" />
+        <result column="send_start_time" property="sendStartTime" />
+        <result column="send_end_time" property="sendEndTime" />
+        <result column="use_start_time" property="useStartTime" />
+        <result column="use_end_time" property="useEndTime" />
+        <result column="add_time" property="addTime" />
+        <result column="store_id" property="storeId" />
+        <result column="status" property="status" />
+        <result column="coupon_info" property="couponInfo" />
+        <result column="validity_day" property="validityDay" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name, type, use_type, money, condition, createnum, send_num, use_num, send_start_time, send_end_time, use_start_time, use_end_time, add_time, store_id, status, coupon_info, validity_day
+    </sql>
+
+</mapper>

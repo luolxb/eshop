@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.DepositCertificateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.DepositCertificate">
+        <id column="id" property="Id" />
+        <result column="certificate_name" property="certificateName" />
+        <result column="certificate_role" property="certificateRole" />
+        <result column="certificate_logo" property="certificateLogo" />
+        <result column="user_id" property="userId" />
+        <result column="seller_id" property="sellerId" />
+        <result column="specification" property="specification" />
+        <result column="case_number" property="caseNumber" />
+        <result column="batch_number" property="batchNumber" />
+        <result column="amount" property="amount" />
+        <result column="purchasing_company" property="purchasingCompany" />
+        <result column="product_name" property="productName" />
+        <result column="create_time" property="createTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="audit_time" property="auditTime" />
+        <result column="hasd_value" property="hasdValue" />
+        <result column="block_height" property="blockHeight" />
+        <result column="template_id" property="templateId" />
+        <result column="appli_time" property="appliTime" />
+        <result column="on_chain_status" property="onChainStatus" />
+        <result column="on_chain_time" property="onChainTime" />
+        <result column="audit_remark" property="auditRemark" />
+        <result column="audit_status" property="auditStatus" />
+        <result column="audit_by" property="auditBy" />
+        <result column="parameter" property="parameter" />
+        <result column="is_send" property="isSend" />
+        <result column="send_time" property="sendTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+       id,certificate_name,certificate_role,certificate_logo,user_id,seller_id,
+       specification,case_number,batch_number,amount,purchasing_company,product_name,
+       create_time,create_by,update_time,update_by,audit_time,hasd_value,
+       block_height,template_id,appli_time,on_chain_status,on_chain_time,audit_remark,
+       audit_status,audit_by,parameter,is_send,send_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.UserAddressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.UserAddress">
+        <id column="address_id" property="addressId" />
+        <result column="user_id" property="userId" />
+        <result column="consignee" property="consignee" />
+        <result column="email" property="email" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="twon" property="twon" />
+        <result column="address" property="address" />
+        <result column="zipcode" property="zipcode" />
+        <result column="mobile" property="mobile" />
+        <result column="is_default" property="isDefault" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        address_id, user_id, consignee, email, country, province, city, district, twon, address, zipcode, mobile, is_default, longitude, latitude
+    </sql>
+
+</mapper>

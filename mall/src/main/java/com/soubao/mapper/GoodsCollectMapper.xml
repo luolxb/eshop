@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsCollectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsCollect">
+        <id column="collect_id" property="collectId" />
+        <result column="user_id" property="userId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="cat_id3" property="catId3" />
+        <result column="add_time" property="addTime" />
+        <result column="goods_name" property="goodsName" />
+        <result column="shop_price" property="shopPrice" />
+        <result column="store_count" property="storeCount" />
+        <result column="original_img" property="originalImg" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        collect_id, user_id, goods_id, cat_id3, add_time
+    </sql>
+
+    <select id="selectCollectPage" resultMap="BaseResultMap">
+        SELECT
+        gc.*,
+        g.goods_name,
+        g.shop_price,
+        g.store_count,
+        g.original_img
+        FROM
+        goods_collect gc
+        LEFT JOIN
+        goods g
+        ON
+        gc.goods_id = g.goods_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        ORDER BY
+        gc.add_time DESC
+    </select>
+
+
+</mapper>

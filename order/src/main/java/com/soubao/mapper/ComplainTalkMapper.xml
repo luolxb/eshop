@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ComplainTalkMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.ComplainTalk">
+        <id column="talk_id" property="talkId" />
+        <result column="complain_id" property="complainId" />
+        <result column="talk_member_id" property="talkMemberId" />
+        <result column="talk_member_name" property="talkMemberName" />
+        <result column="talk_member_type" property="talkMemberType" />
+        <result column="talk_content" property="talkContent" />
+        <result column="talk_state" property="talkState" />
+        <result column="talk_admin" property="talkAdmin" />
+        <result column="talk_time" property="talkTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        talk_id, complain_id, talk_member_id, talk_member_name, talk_member_type, talk_content, talk_state, talk_admin, talk_time
+    </sql>
+
+</mapper>

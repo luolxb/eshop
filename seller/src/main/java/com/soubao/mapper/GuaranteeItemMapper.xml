@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GuaranteeItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GuaranteeItem">
+        <id column="grt_id" property="grtId" />
+        <result column="grt_name" property="grtName" />
+        <result column="grt_describe" property="grtDescribe" />
+        <result column="grt_cost" property="grtCost" />
+        <result column="grt_icon" property="grtIcon" />
+        <result column="grt_descurl" property="grtDescurl" />
+        <result column="grt_state" property="grtState" />
+        <result column="grt_sort" property="grtSort" />
+        <result column="grt_charge" property="grtCharge" />
+        <result column="grt_compensate" property="grtCompensate" />
+        <result column="grt_money" property="grtMoney" />
+        <result column="grt_score" property="grtScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        grt_id, grt_name, grt_describe, grt_cost, grt_icon, grt_descurl, grt_state, grt_sort, grt_charge, grt_compensate, grt_money, grt_score
+    </sql>
+
+</mapper>

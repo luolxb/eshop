@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.InvoiceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Invoice">
+        <id column="invoice_id" property="invoiceId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="order_sn" property="orderSn"/>
+        <result column="user_id" property="userId"/>
+        <result column="store_id" property="storeId"/>
+        <result column="invoice_type" property="invoiceType"/>
+        <result column="invoice_money" property="invoiceMoney"/>
+        <result column="invoice_title" property="invoiceTitle"/>
+        <result column="invoice_desc" property="invoiceDesc"/>
+        <result column="invoice_rate" property="invoiceRate"/>
+        <result column="taxpayer" property="taxpayer"/>
+        <result column="status" property="status"/>
+        <result column="atime" property="atime"/>
+        <result column="ctime" property="ctime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        invoice_id, order_id, user_id, store_id, invoice_type, invoice_money, invoice_title, invoice_desc, invoice_rate, taxpayer, status, atime, ctime
+    </sql>
+
+    <select id="selectInvoiceExportData" resultType="com.soubao.vo.InvoiceExcel">
+        SELECT * FROM invoice
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+</mapper>

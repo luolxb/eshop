@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SuppliersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Suppliers">
+        <id column="suppliers_id" property="suppliersId" />
+        <result column="suppliers_name" property="suppliersName" />
+        <result column="suppliers_desc" property="suppliersDesc" />
+        <result column="is_check" property="isCheck" />
+        <result column="suppliers_contacts" property="suppliersContacts" />
+        <result column="suppliers_phone" property="suppliersPhone" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        suppliers_id, suppliers_name, suppliers_desc, is_check, suppliers_contacts, suppliers_phone, store_id
+    </sql>
+
+</mapper>

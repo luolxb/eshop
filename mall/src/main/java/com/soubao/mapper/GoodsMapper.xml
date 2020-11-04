@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Goods">
+
+        <!-- 商品id -->
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+
+        <!-- 一级分类id -->
+        <result column="cat_id1" jdbcType="INTEGER" property="catId1"/>
+
+        <!-- 二级分类 -->
+        <result column="cat_id2" jdbcType="INTEGER" property="catId2"/>
+
+        <!-- 三级分类 -->
+        <result column="cat_id3" jdbcType="INTEGER" property="catId3"/>
+
+        <!-- 本店一级分类 -->
+        <result column="store_cat_id1" jdbcType="INTEGER" property="storeCatId1"/>
+
+        <!-- 本店二级分类 -->
+        <result column="store_cat_id2" jdbcType="INTEGER" property="storeCatId2"/>
+
+        <!-- 商品编号 -->
+        <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
+
+        <!-- 商品名称 -->
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+
+        <!-- 点击数 -->
+        <result column="click_count" jdbcType="INTEGER" property="clickCount"/>
+
+        <!-- 品牌id -->
+        <result column="brand_id" jdbcType="SMALLINT" property="brandId"/>
+
+        <!-- 库存数量 -->
+        <result column="store_count" jdbcType="INTEGER" property="storeCount"/>
+
+        <!-- 商品收藏数 -->
+        <result column="collect_sum" jdbcType="INTEGER" property="collectSum"/>
+
+        <!-- 商品评论数 -->
+        <result column="comment_count" jdbcType="SMALLINT" property="commentCount"/>
+
+        <!-- 商品重量克为单位 -->
+        <result column="weight" jdbcType="INTEGER" property="weight"/>
+
+        <!-- 商品体积。单位立方米 -->
+        <result column="volume" jdbcType="DOUBLE" property="volume"/>
+
+        <!-- 市场价 -->
+        <result column="market_price" jdbcType="DECIMAL" property="marketPrice"/>
+
+        <!-- 本店价 -->
+        <result column="shop_price" jdbcType="DECIMAL" property="shopPrice"/>
+
+        <!-- 商品成本价 -->
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+
+        <!-- COMMENT '积分兑换：0不参与积分兑换 -->
+        <result column="exchange_integral" jdbcType="INTEGER" property="exchangeIntegral"/>
+
+        <!-- 商品关键词 -->
+        <result column="keywords" jdbcType="VARCHAR" property="keywords"/>
+
+        <!-- 商品简单描述 -->
+        <result column="goods_remark" jdbcType="VARCHAR" property="goodsRemark"/>
+
+        <!-- 商品上传原始图 -->
+        <result column="original_img" jdbcType="VARCHAR" property="originalImg"/>
+
+        <!-- 是否是虚拟商品 1是 0否 -->
+        <result column="is_virtual" jdbcType="BIT" property="isVirtual"/>
+
+        <!-- 虚拟商品有效期 -->
+        <result column="virtual_indate" jdbcType="INTEGER" property="virtualIndate"/>
+
+        <!-- 虚拟商品购买上限 -->
+        <result column="virtual_limit" jdbcType="SMALLINT" property="virtualLimit"/>
+
+        <!-- 是否允许过期退款， 1是，0否 -->
+        <result column="virtual_refund" jdbcType="BIT" property="virtualRefund"/>
+
+        <!-- 0下架1上架2违规下架 -->
+        <result column="is_on_sale" jdbcType="BIT" property="isOnSale"/>
+
+        <!-- 是否包邮0否1是 -->
+        <result column="is_free_shipping" jdbcType="BIT" property="isFreeShipping"/>
+
+        <!-- 商品上架时间 -->
+        <result column="on_time" jdbcType="INTEGER" property="onTime"/>
+
+        <!-- 商品排序 -->
+        <result column="sort" jdbcType="SMALLINT" property="sort"/>
+
+        <!-- 是否推荐 -->
+        <result column="is_recommend" jdbcType="BIT" property="isRecommend"/>
+
+        <!-- 是否新品 -->
+        <result column="is_new" jdbcType="BIT" property="isNew"/>
+
+        <!-- 是否热卖 -->
+        <result column="is_hot" jdbcType="BIT" property="isHot"/>
+
+        <!-- 最后更新时间 -->
+        <result column="last_update" jdbcType="VARCHAR" property="lastUpdate"/>
+
+        <!-- 商品所属类型id，取值表goods_type的id -->
+        <result column="goods_type" jdbcType="INTEGER" property="goodsType"/>
+
+        <!-- 购买商品赠送积分 -->
+        <result column="give_integral" jdbcType="INTEGER" property="giveIntegral"/>
+
+        <!-- 商品销量 -->
+        <result column="sales_sum" jdbcType="INTEGER" property="salesSum"/>
+
+        <!-- 虚拟销售量 -->
+        <result column="virtual_sales_sum" jdbcType="INTEGER" property="virtualSalesSum"/>
+
+        <!-- 0默认1抢购2团购3优惠促销4预售5虚拟(5其实没用)6拼团 -->
+        <result column="prom_type" jdbcType="BIT" property="promType"/>
+
+        <!-- 优惠活动id -->
+        <result column="prom_id" jdbcType="INTEGER" property="promId"/>
+
+        <!-- 佣金用于分销分成 -->
+        <result column="distribut" jdbcType="DECIMAL" property="distribut"/>
+
+        <!-- 商家店铺ID -->
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+
+        <!-- SPU -->
+        <result column="spu" jdbcType="VARCHAR" property="spu"/>
+
+        <!-- SKU -->
+        <result column="sku" jdbcType="VARCHAR" property="sku"/>
+
+        <!-- 0待审核1审核通过2审核失败 -->
+        <result column="goods_state" jdbcType="BIT" property="goodsState"/>
+
+        <!-- 违规下架原因 -->
+        <result column="close_reason" jdbcType="VARCHAR" property="closeReason"/>
+
+        <!-- 供应商ID -->
+        <result column="suppliers_id" jdbcType="SMALLINT" property="suppliersId"/>
+
+        <!-- 运费模板ID -->
+        <result column="template_id" jdbcType="INTEGER" property="templateId"/>
+
+        <!-- 1:第三方自营店,2:总平台自营店 -->
+        <result column="is_own_shop" jdbcType="BIT" property="isOwnShop"/>
+
+        <!-- 视频地址 -->
+        <result column="video" jdbcType="VARCHAR" property="video"/>
+
+        <!-- 商品标签 -->
+        <result column="label_id" jdbcType="VARCHAR" property="labelId"/>
+
+        <!-- 关联版式头部 -->
+        <result column="plate_top" jdbcType="INTEGER" property="plateTop"/>
+
+        <!-- 关联版式底部 -->
+        <result column="plate_bottom" jdbcType="INTEGER" property="plateBottom"/>
+
+        <!-- 商品详细描述 -->
+        <result column="goods_content" jdbcType="LONGVARCHAR" property="goodsContent"/>
+
+        <!-- 手机端商品详情 -->
+        <result column="mobile_content" jdbcType="LONGVARCHAR" property="mobileContent"/>
+
+    </resultMap>
+
+    <select id="selectNotAddGoodsCount" resultType="java.lang.Integer">
+        SELECT
+            COUNT(1)
+        FROM
+            goods
+        WHERE
+            is_on_sale = 1
+            AND distribut > 0
+            AND goods_id NOT IN
+            (SELECT goods_id FROM user_distribution WHERE user_id = #{userId} )
+    </select>
+
+    <select id="stock">
+        update goods
+        set store_count = store_count
+        + #{goods.storeCount},sales_sum = sales_sum - #{goods.storeCount}
+        where goods_id = #{goods.goodsId}
+    </select>
+
+    <resultMap id="PageMyShopGoods" type="com.soubao.entity.Goods" extends="BaseResultMap">
+        <association property="userDistribution" javaType="com.soubao.entity.UserDistribution">
+            <result column="id" property="id" />
+            <result column="user_id" property="userId" />
+            <result column="user_name" property="userName" />
+            <result column="goods_id" property="goodsId" />
+            <result column="goods_name" property="goodsName" />
+            <result column="cat_id" property="catId" />
+            <result column="brand_id" property="brandId" />
+            <result column="share_num" property="shareNum" />
+            <result column="sales_num" property="salesNum" />
+            <result column="addtime" property="addtime" />
+            <result column="store_id" property="storeId" />
+        </association>
+        <association property="goodsCategory" javaType="com.soubao.entity.GoodsCategory">
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <select id="selectPageMyShopGoods" resultMap="PageMyShopGoods">
+        SELECT ud.*, g.*, gc.name FROM user_distribution ud
+        LEFT JOIN goods g ON ud.goods_id = g.goods_id
+        LEFT JOIN goods_category gc ON gc.id = g.cat_id1
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <resultMap id="ShopGoodsStockMap" type="com.soubao.vo.Stock">
+        <id column="item_id" property="itemId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_name" property="goodsName" />
+        <result column="key_name" property="keyName" />
+        <result column="price" property="price" />
+        <result column="store_count" property="storeCount" />
+    </resultMap>
+
+    <select id="selectStockPage" resultMap="ShopGoodsStockMap">
+        SELECT
+        g.goods_id,
+        g.goods_name,
+        s.item_id,
+        s.key_name,
+        ( CASE WHEN s.store_count > 0 THEN s.store_count ELSE g.store_count END ) AS store_count,
+        ( CASE WHEN s.price > 0 THEN s.price ELSE g.shop_price END ) AS price
+        FROM
+        goods g
+        LEFT JOIN spec_goods_price s ON g.goods_id = s.goods_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ExposeSubjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.ExposeSubject">
+        <id column="expose_subject_id" property="exposeSubjectId" />
+        <result column="expose_subject_content" property="exposeSubjectContent" />
+        <result column="expose_subject_type_id" property="exposeSubjectTypeId" />
+        <result column="expose_subject_type_name" property="exposeSubjectTypeName" />
+        <result column="expose_subject_state" property="exposeSubjectState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        expose_subject_id, expose_subject_content, expose_subject_type_id, expose_subject_type_name, expose_subject_state
+    </sql>
+
+</mapper>

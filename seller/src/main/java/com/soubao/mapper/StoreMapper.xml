@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Store">
+        <id column="store_id" property="storeId" />
+        <result column="invite_user_id" property="inviteUserId" />
+        <result column="store_name" property="storeName" />
+        <result column="grade_id" property="gradeId" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="seller_name" property="sellerName" />
+        <result column="sc_id" property="scId" />
+        <result column="company_name" property="companyName" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="district" property="district" />
+        <result column="store_address" property="storeAddress" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="store_zip" property="storeZip" />
+        <result column="store_state" property="storeState" />
+        <result column="store_close_info" property="storeCloseInfo" />
+        <result column="store_sort" property="storeSort" />
+        <result column="store_rebate_paytime" property="storeRebatePaytime" />
+        <result column="store_time" property="storeTime" />
+        <result column="store_end_time" property="storeEndTime" />
+        <result column="store_logo" property="storeLogo" />
+        <result column="store_banner" property="storeBanner" />
+        <result column="store_avatar" property="storeAvatar" />
+        <result column="seo_keywords" property="seoKeywords" />
+        <result column="seo_description" property="seoDescription" />
+        <result column="store_aliwangwang" property="storeAliwangwang" />
+        <result column="store_qq" property="storeQq" />
+        <result column="store_phone" property="storePhone" />
+        <result column="store_zy" property="storeZy" />
+        <result column="store_domain" property="storeDomain" />
+        <result column="store_recommend" property="storeRecommend" />
+        <result column="store_theme" property="storeTheme" />
+        <result column="store_credit" property="storeCredit" />
+        <result column="store_desccredit" property="storeDesccredit" />
+        <result column="store_servicecredit" property="storeServicecredit" />
+        <result column="store_deliverycredit" property="storeDeliverycredit" />
+        <result column="store_collect" property="storeCollect" />
+        <result column="store_slide" property="storeSlide" />
+        <result column="store_slide_url" property="storeSlideUrl" />
+        <result column="store_printdesc" property="storePrintdesc" />
+        <result column="store_sales" property="storeSales" />
+        <result column="store_presales" property="storePresales" />
+        <result column="store_aftersales" property="storeAftersales" />
+        <result column="store_workingtime" property="storeWorkingtime" />
+        <result column="store_free_price" property="storeFreePrice" />
+        <result column="store_warning_storage" property="storeWarningStorage" />
+        <result column="store_decoration_switch" property="storeDecorationSwitch" />
+        <result column="store_decoration_only" property="storeDecorationOnly" />
+        <result column="is_own_shop" property="isOwnShop" />
+        <result column="bind_all_gc" property="bindAllGc" />
+        <result column="qitian" property="qitian" />
+        <result column="certified" property="certified" />
+        <result column="returned" property="returned" />
+        <result column="store_free_time" property="storeFreeTime" />
+        <result column="mb_slide" property="mbSlide" />
+        <result column="mb_slide_url" property="mbSlideUrl" />
+        <result column="deliver_region" property="deliverRegion" />
+        <result column="cod" property="cod" />
+        <result column="two_hour" property="twoHour" />
+        <result column="ensure" property="ensure" />
+        <result column="deposit" property="deposit" />
+        <result column="deposit_icon" property="depositIcon" />
+        <result column="store_money" property="storeMoney" />
+        <result column="pending_money" property="pendingMoney" />
+        <result column="deleted" property="deleted" />
+        <result column="goods_examine" property="goodsExamine" />
+        <result column="service_phone" property="servicePhone" />
+        <result column="domain_enable" property="domainEnable" />
+        <result column="store_type" property="storeType" />
+        <result column="default_store" property="defaultStore" />
+        <result column="store_notice" property="storeNotice" />
+
+        <result column="distance" property="distance"/>
+        <result column="store_member_count" property="storeMemberCount" />
+        <result column="nickname" property="nickname" />
+        <result column="mobile" property="mobile" />
+        <result column="reg_time" property="regTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        store_id, invite_user_id, store_name, grade_id, user_id, user_name, seller_name, sc_id, company_name, province_id, city_id, district, store_address, longitude, latitude, store_zip, store_state, store_close_info, store_sort, store_rebate_paytime, store_time, store_end_time, store_logo, store_banner, store_avatar, seo_keywords, seo_description, store_aliwangwang, store_qq, store_phone, store_zy, store_domain, store_recommend, store_theme, store_credit, store_desccredit, store_servicecredit, store_deliverycredit, store_collect, store_slide, store_slide_url, store_printdesc, store_sales, store_presales, store_aftersales, store_workingtime, store_free_price, store_warning_storage, store_decoration_switch, store_decoration_only, is_own_shop, bind_all_gc, qitian, certified, returned, store_free_time, mb_slide, mb_slide_url, deliver_region, cod, two_hour, ensure, deposit, deposit_icon, store_money, pending_money, deleted, goods_examine, service_phone, domain_enable, store_type, default_store, store_notice
+    </sql>
+
+</mapper>

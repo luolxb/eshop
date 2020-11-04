@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.AccountLogStoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.AccountLogStore">
+        <id column="log_id" property="logId" />
+        <result column="store_id" property="storeId" />
+        <result column="store_money" property="storeMoney" />
+        <result column="pending_money" property="pendingMoney" />
+        <result column="change_time" property="changeTime" />
+        <result column="desc" property="desc" />
+        <result column="order_sn" property="orderSn" />
+        <result column="order_id" property="orderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log_id, store_id, store_money, pending_money, change_time, desc, order_sn, order_id
+    </sql>
+
+</mapper>

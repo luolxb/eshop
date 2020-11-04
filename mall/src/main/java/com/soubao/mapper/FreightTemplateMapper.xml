@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.FreightTemplateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.FreightTemplate">
+        <id column="template_id" property="templateId" />
+        <result column="template_name" property="templateName" />
+        <result column="type" property="type" />
+        <result column="is_enable_default" property="isEnableDefault" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+    <resultMap id="WithConfig" type="com.soubao.entity.FreightTemplate" extends="BaseResultMap">
+        <collection property="freightConfigList" ofType="com.soubao.entity.FreightConfig"
+                    select="com.soubao.dao.FreightConfigMapper.selectFreightConfig" column="template_id">
+            <id column="config_id" property="configId" />
+            <result column="first_unit" property="firstUnit" />
+            <result column="first_money" property="firstMoney" />
+            <result column="continue_unit" property="continueUnit" />
+            <result column="continue_money" property="continueMoney" />
+            <result column="template_id" property="templateId" />
+            <result column="is_default" property="isDefault" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        template_id, template_name, `type`, is_enable_default, store_id
+    </sql>
+
+    <select id="selectPageWithConfig" resultMap="WithConfig">
+        select * from freight_template
+        where 1=1
+        <if test="freightTemplate.storeId != null and freightTemplate.storeId != ''">
+            and store_id = #{freightTemplate.storeId}
+        </if>
+        <if test="freightTemplate.templateId != null and freightTemplate.templateId != ''">
+            and template_id = #{freightTemplate.templateId}
+        </if>
+    </select>
+</mapper>

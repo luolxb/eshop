@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ComplainSubjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.ComplainSubject">
+        <id column="subject_id" property="subjectId" />
+        <result column="subject_name" property="subjectName" />
+        <result column="subject_desc" property="subjectDesc" />
+        <result column="subject_state" property="subjectState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        subject_id, subject_name, subject_desc, subject_state
+    </sql>
+
+</mapper>

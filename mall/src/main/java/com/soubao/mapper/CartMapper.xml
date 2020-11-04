@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.CartMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Cart">
+    <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="session_id" property="sessionId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_sn" property="goodsSn" />
+        <result column="goods_name" property="goodsName" />
+        <result column="market_price" property="marketPrice" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="member_goods_price" property="memberGoodsPrice" />
+        <result column="goods_num" property="goodsNum" />
+        <result column="spec_key" property="specKey" />
+        <result column="spec_key_name" property="specKeyName" />
+        <result column="bar_code" property="barCode" />
+        <result column="selected" property="selected" />
+        <result column="add_time" property="addTime" />
+        <result column="prom_type" property="promType" />
+        <result column="prom_id" property="promId" />
+        <result column="sku" property="sku" />
+        <result column="store_id" property="storeId" />
+        <result column="shop_id" property="shopId" />
+        <result column="sgs_id" property="sgsId" />
+        <result column="item_id" property="itemId" />
+        <result column="cart_store_id" property="cartStoreId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, session_id, goods_id, goods_sn, goods_name, market_price, goods_price, member_goods_price, goods_num, spec_key, spec_key_name, bar_code, selected, add_time, prom_type, prom_id, sku, store_id, shop_id, sgs_id, item_id, cart_store_id
+    </sql>
+
+    <select id="selectCartGoodsCountByUser" resultType="java.lang.Integer">
+        SELECT
+            IFNULL(sum( goods_num ), 0)
+        FROM
+            cart
+        WHERE
+            user_id = #{user.userId}
+    </select>
+</mapper>

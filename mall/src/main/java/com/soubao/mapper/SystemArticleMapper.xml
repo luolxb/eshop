@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SystemArticleMapper">
+  <resultMap id="BaseResultMap" type="com.soubao.entity.SystemArticle">
+    
+    <!-- id -->
+    <result column="doc_id" jdbcType="INTEGER" property="docId" />
+    
+    <!-- 调用标识码 -->
+    <result column="doc_code" jdbcType="VARCHAR" property="docCode" />
+    
+    <!-- 标题 -->
+    <result column="doc_title" jdbcType="VARCHAR" property="docTitle" />
+    
+    <!-- 添加时间/修改时间 -->
+    <result column="doc_time" jdbcType="INTEGER" property="docTime" />
+    
+    <!-- 内容 -->
+    <result column="doc_content" jdbcType="LONGVARCHAR" property="docContent" />
+  </resultMap>
+</mapper>

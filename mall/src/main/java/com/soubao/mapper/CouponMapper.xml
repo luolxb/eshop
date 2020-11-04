@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.CouponMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Coupon">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="use_type" property="useType"/>
+        <result column="money" property="money"/>
+        <result column="condition" property="condition"/>
+        <result column="createnum" property="createnum"/>
+        <result column="send_num" property="sendNum"/>
+        <result column="use_num" property="useNum"/>
+        <result column="send_start_time" property="sendStartTime"/>
+        <result column="send_end_time" property="sendEndTime"/>
+        <result column="use_start_time" property="useStartTime"/>
+        <result column="use_end_time" property="useEndTime"/>
+        <result column="add_time" property="addTime"/>
+        <result column="store_id" property="storeId"/>
+        <result column="status" property="status"/>
+        <result column="coupon_info" property="couponInfo"/>
+        <result column="validity_day" property="validityDay"/>
+
+        <result column="limit_store" property="limitStore"/>
+        <result column="dead_time_format" property="deadTimeFormat"/>
+
+        <result column="spacing_time" property="spacingTime"/>
+        <result column="is_get" property="isGet"/>
+        <result column="image" property="image"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_category_id" property="goodsCategoryId"/>
+        <result column="coupon_list_id" property="couponListId"/>
+        <result column="store_name" property="storeName"/>
+        <result column="status_detail" property="statusDetail"/>
+        <result column="type_detail" property="typeDetail"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name, type, use_type, money, condition, createnum, send_num, use_num, send_start_time, send_end_time, use_start_time, use_end_time, add_time, store_id, status, coupon_info, validity_day
+    </sql>
+
+    <select id="selectUserCouponListByType" resultMap="BaseResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.money,
+            c.condition,
+            c.type,
+            c.use_type,
+            FROM_UNIXTIME(c.use_end_time, '%Y-%m-%d') AS dead_time_format,
+            c.store_id,
+            gc.goods_id,
+            gc.goods_category_id,
+            cl.id AS coupon_list_id,
+            cl.status,
+            c.use_end_time
+        FROM
+            coupon_list cl
+            INNER JOIN coupon c ON cl.cid = c.id
+            LEFT JOIN goods_coupon gc ON gc.coupon_id = c.id
+        WHERE
+            cl.uid = #{user.userId}
+            AND cl.deleted = 0
+            AND c.STATUS = 1
+            AND c.type != 4
+            <choose>
+                <when test="type == 0">
+                    AND c.use_end_time > unix_timestamp(now())
+                    AND cl.status = 0
+                </when>
+                <when test="type == 1">
+                    AND cl.order_id > 0
+                    AND cl.use_time > 0
+                    AND cl.status = 1
+                </when>
+                <when test="type == 2">
+                    AND c.use_end_time &lt; unix_timestamp(now())
+                    AND cl.status != 1
+                </when>
+            </choose>
+            OR (
+                cl.uid = #{user.userId}
+                AND c.STATUS = 1
+                AND c.type = 4
+                AND cl.deleted = 0
+                <choose>
+                    <when test="type == 0">
+                        AND cl.status = 0
+                        AND (
+                        cl.send_time +(86400 * c.validity_day)
+                        ) >= unix_timestamp(now())
+                    </when>
+                    <when test="type == 1">
+                        AND cl.status = 1
+                        AND cl.order_id >0
+                        AND cl.use_time > 0
+                    </when>
+                    <when test="type == 2">
+                        AND cl.status != 1
+                        AND (
+                        cl.send_time +(86400 * c.validity_day)
+                        ) &lt; unix_timestamp(now())
+                    </when>
+                </choose>
+            )
+        ORDER BY
+        cl.send_time DESC,
+        cl.use_time
+    </select>
+
+    <select id="selectCouponPage" resultMap="BaseResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.use_type,
+            c.money,
+            c.condition,
+            c.createnum,
+            c.send_num,
+            c.store_id,
+            c.send_end_time - unix_timestamp(now()) AS spacing_time,
+            gc.goods_id,
+            gc.goods_category_id
+        FROM
+            coupon c
+        LEFT JOIN goods_coupon gc ON gc.coupon_id = c.id AND gc.goods_category_id = #{catId}
+        WHERE
+            (( createnum - send_num > 0 AND createnum > 0 ) OR createnum = 0 )
+            AND c.type = 2
+            AND c.STATUS = 1
+            AND c.send_start_time &lt;= unix_timestamp(now()) AND c.send_end_time >= unix_timestamp(now())
+        ORDER BY
+            <choose>
+                <when test="type == 2">
+                    c.send_end_time
+                </when>
+                <when test="type == 3">
+                    c.money DESC
+                </when>
+                <otherwise>
+                    c.id DESC
+                </otherwise>
+            </choose>
+    </select>
+
+</mapper>

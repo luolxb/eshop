@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SpecGoodsPriceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.SpecGoodsPrice">
+        <id column="item_id" property="itemId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_mark" property="goodsMark"/>
+        <result column="key" property="key"/>
+        <result column="key_name" property="keyName"/>
+        <result column="price" property="price"/>
+        <result column="store_count" property="storeCount"/>
+        <result column="bar_code" property="barCode"/>
+        <result column="sku" property="sku"/>
+        <result column="store_id" property="storeId"/>
+        <result column="spec_img" property="specImg"/>
+        <result column="prom_id" property="promId"/>
+        <result column="prom_type" property="promType"/>
+        <result column="cost" property="cost"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        item_id, goods_id, goods_mark, key, key_name, price, store_count, bar_code, sku, store_id, spec_img, prom_id,
+        prom_type, cost
+    </sql>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GoodsConsultMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GoodsConsult">
+    <result column="id" property="id" />
+        <result column="goods_id" property="goodsId" />
+        <result column="username" property="username" />
+        <result column="add_time" property="addTime" />
+        <result column="consult_type" property="consultType" />
+        <result column="content" property="content" />
+        <result column="parent_id" property="parentId" />
+        <result column="store_id" property="storeId" />
+        <result column="is_show" property="isShow" />
+        <result column="status" property="status" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        goods_id, username, add_time, consult_type, content, parent_id, store_id, is_show, status, user_id
+    </sql>
+
+    <select id="selectConsultPage" resultMap="BaseResultMap">
+        SELECT
+        c.*,g.goods_name
+        FROM goods_consult c
+        LEFT JOIN goods g
+        ON c.goods_id=g.goods_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectUserConsultPage" resultMap="BaseResultMap">
+        SELECT
+        c.*,g.goods_name
+        FROM goods_consult c
+        LEFT JOIN goods g
+        ON c.goods_id=g.goods_id
+        WHERE
+        c.user_id = #{user.userId}
+    </select>
+</mapper>

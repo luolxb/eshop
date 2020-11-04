@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreMsgTplMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreMsgTpl">
+        <id column="smt_code" property="smtCode" />
+        <result column="smt_name" property="smtName" />
+        <result column="smt_message_switch" property="smtMessageSwitch" />
+        <result column="smt_message_content" property="smtMessageContent" />
+        <result column="smt_message_forced" property="smtMessageForced" />
+        <result column="smt_short_switch" property="smtShortSwitch" />
+        <result column="smt_short_content" property="smtShortContent" />
+        <result column="smt_short_forced" property="smtShortForced" />
+        <result column="smt_mail_switch" property="smtMailSwitch" />
+        <result column="smt_mail_subject" property="smtMailSubject" />
+        <result column="smt_mail_content" property="smtMailContent" />
+        <result column="smt_mail_forced" property="smtMailForced" />
+        <result column="smt_short_sign" property="smtShortSign" />
+        <result column="smt_short_code" property="smtShortCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        smt_code, smt_name, smt_message_switch, smt_message_content, smt_message_forced, smt_short_switch, smt_short_content, smt_short_forced, smt_mail_switch, smt_mail_subject, smt_mail_content, smt_mail_forced, smt_short_sign, smt_short_code
+    </sql>
+
+</mapper>

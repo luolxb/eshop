@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.PromOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.PromOrder">
+    <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="type" property="type" />
+        <result column="money" property="money" />
+        <result column="expression" property="expression" />
+        <result column="description" property="description" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="status" property="status" />
+        <result column="group" property="group" />
+        <result column="prom_img" property="promImg" />
+        <result column="store_id" property="storeId" />
+        <result column="orderby" property="orderby" />
+        <result column="recommend" property="recommend" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        title, type, money, expression, description, start_time, end_time, status, group, prom_img, store_id, orderby, recommend
+    </sql>
+
+</mapper>

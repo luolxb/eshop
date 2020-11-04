@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.TeamActivityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.TeamActivity">
+        <id column="team_id" property="teamId" />
+        <result column="act_name" property="actName" />
+        <result column="team_type" property="teamType" />
+        <result column="time_limit" property="timeLimit" />
+        <result column="team_price" property="teamPrice" />
+        <result column="needer" property="needer" />
+        <result column="goods_name" property="goodsName" />
+        <result column="bonus" property="bonus" />
+        <result column="stock_limit" property="stockLimit" />
+        <result column="goods_id" property="goodsId" />
+        <result column="buy_limit" property="buyLimit" />
+        <result column="sales_sum" property="salesSum" />
+        <result column="virtual_num" property="virtualNum" />
+        <result column="share_title" property="shareTitle" />
+        <result column="share_desc" property="shareDesc" />
+        <result column="share_img" property="shareImg" />
+        <result column="store_id" property="storeId" />
+        <result column="sort" property="sort" />
+        <result column="is_recommend" property="isRecommend" />
+        <result column="status" property="status" />
+        <result column="is_lottery" property="isLottery" />
+        <result column="add_time" property="addTime" />
+        <result column="deleted" property="deleted" />
+        <result column="item_id" property="itemId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        team_id, act_name, team_type, time_limit, team_price, needer, goods_name, bonus, stock_limit, goods_id, buy_limit, sales_sum, virtual_num, share_title, share_desc, share_img, store_id, sort, is_recommend, status, is_lottery, add_time, deleted, item_id
+    </sql>
+    <resultMap id="TeamGoodsList" type="com.soubao.entity.TeamActivity" extends="BaseResultMap">
+        <collection property="teamFollows" ofType="com.soubao.entity.TeamFollow" select="queryTeamFollow"
+                    column="team_id">
+            <result column="follow_user_id" property="followUserId"/>
+            <result column="follow_user_nickname" property="followUserNickname"/>
+            <result column="follow_user_head_pic" property="followUserHeadPic"/>
+        </collection>
+    </resultMap>
+    <resultMap id="withStore" type="com.soubao.entity.TeamActivity" extends="BaseResultMap">
+        <association property="successCount" jdbcType="INTEGER" select="com.soubao.dao.TeamFoundMapper.countTeamSuccessCount" column="team_id"/>
+    </resultMap>
+    <select id="queryTeamFollow" resultType="com.soubao.entity.TeamFollow">
+        select follow_user_id,follow_user_nickname,follow_user_head_pic
+        from team_follow where team_id = #{teamId} limit 3
+    </select>
+    <select id="selectGoodsPage" resultMap="TeamGoodsList">
+        select
+        	a.team_id,a.act_name,a.team_type,a.time_limit,a.needer,a.goods_name,a.bonus,a.stock_limit,
+        	a.virtual_num,a.sales_sum,a.goods_id,any_value(g.item_id) as item_id,any_value(g.team_price) as team_price
+        FROM
+          team_activity a
+        INNER JOIN team_goods_item g ON g.goods_id = a.goods_id
+        WHERE
+          1=1
+            <if test="teamActivity != null">
+                <if test="teamActivity.deleted != null">
+                    and a.deleted = #{teamActivity.deleted}
+                </if>
+                <if test="teamActivity.status != null">
+                    and a.status = #{teamActivity.status}
+                </if>
+            </if>
+        GROUP BY a.team_id
+    </select>
+    <select id="selectPageWithStore" resultMap="withStore">
+        select * from team_activity where deleted = 0
+        <if test="teamActivity.storeId != null and teamActivity.storeId != ''">
+            and store_id = #{teamActivity.storeId}
+        </if>
+        <if test="teamActivity.actName != null and teamActivity.actName != ''">
+            and act_name like #{teamActivity.actName}
+        </if>
+        <if test="teamActivity.teamType != null">
+            and team_type = #{teamActivity.teamType}
+        </if>
+        <if test="teamActivity.status != null">
+            and status = #{teamActivity.status}
+        </if>
+    </select>
+
+</mapper>

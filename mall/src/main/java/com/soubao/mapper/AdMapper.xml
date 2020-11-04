@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.AdMapper">
+  <resultMap id="BaseResultMap" type="com.soubao.entity.Ad">
+    
+    <!-- 广告id -->
+    <result column="ad_id" jdbcType="INTEGER" property="adId" />
+    
+    <!-- 广告位置ID -->
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    
+    <!-- 广告类型 -->
+    <result column="media_type" jdbcType="INTEGER" property="mediaType" />
+    
+    <!-- 广告名称 -->
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    
+    <!-- 链接地址 -->
+    <result column="ad_link" jdbcType="VARCHAR" property="adLink" />
+    
+    <!-- 投放时间 -->
+    <result column="start_time" jdbcType="INTEGER" property="startTime" />
+    
+    <!-- 结束时间 -->
+    <result column="end_time" jdbcType="INTEGER" property="endTime" />
+    
+    <!-- 添加人 -->
+    <result column="link_man" jdbcType="VARCHAR" property="linkMan" />
+    
+    <!-- 添加人邮箱 -->
+    <result column="link_email" jdbcType="VARCHAR" property="linkEmail" />
+    
+    <!-- 添加人联系电话 -->
+    <result column="link_phone" jdbcType="VARCHAR" property="linkPhone" />
+    
+    <!-- 点击量 -->
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    
+    <!-- 是否显示 -->
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    
+    <!-- 排序 -->
+    <result column="orderby" jdbcType="SMALLINT" property="orderby" />
+    
+    <!-- 是否开启浏览器新窗口 -->
+    <result column="target" jdbcType="BIT" property="target" />
+    
+    <!-- 背景颜色 -->
+    <result column="bgcolor" jdbcType="VARCHAR" property="bgcolor" />
+    
+    <!-- APP端广告位key,该值固定, APP端通过该key索引对应广告位 -->
+    <result column="ad_key" jdbcType="VARCHAR" property="adKey" />
+    
+    <!-- 图片地址 -->
+    <result column="ad_code" jdbcType="LONGVARCHAR" property="adCode" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderActionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.OrderAction">
+        <id column="action_id" property="actionId" />
+        <result column="order_id" property="orderId" />
+        <result column="action_user" property="actionUser" />
+        <result column="order_status" property="orderStatus" />
+        <result column="shipping_status" property="shippingStatus" />
+        <result column="pay_status" property="payStatus" />
+        <result column="action_note" property="actionNote" />
+        <result column="log_time" property="logTime" />
+        <result column="status_desc" property="statusDesc" />
+        <result column="user_type" property="userType" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        action_id, order_id, action_user, order_status, shipping_status, pay_status, action_note, log_time, status_desc, user_type, store_id
+    </sql>
+
+</mapper>

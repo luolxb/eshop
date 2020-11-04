@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.NewsCommentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.NewsComment">
+        <id column="comment_id" property="commentId" />
+        <result column="article_id" property="articleId" />
+        <result column="user_id" property="userId" />
+        <result column="content" property="content" />
+        <result column="check_type" property="checkType" />
+        <result column="check_describe" property="checkDescribe" />
+        <result column="is_delete" property="isDelete" />
+        <result column="add_time" property="addTime" />
+        <result column="like_num" property="likeNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        comment_id, article_id, user_id, content, check_type, check_describe, is_delete, add_time, like_num
+    </sql>
+
+</mapper>

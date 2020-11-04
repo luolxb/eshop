@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ConfigMapper">
+  <resultMap id="BaseResultMap" type="com.soubao.entity.Config">
+    <result column="id" jdbcType="SMALLINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="inc_type" jdbcType="VARCHAR" property="incType" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+</mapper>

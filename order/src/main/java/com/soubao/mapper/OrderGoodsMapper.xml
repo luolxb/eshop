@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.OrderGoods">
+
+        <!-- 表id自增 -->
+        <result column="rec_id" jdbcType="INTEGER" property="recId"/>
+
+        <!-- 订单id -->
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+
+        <!-- 商品id -->
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+
+        <!-- 商品名称 -->
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+
+        <!-- 商品货号 -->
+        <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
+
+        <!-- 购买数量 -->
+        <result column="goods_num" jdbcType="SMALLINT" property="goodsNum"/>
+
+        <!-- 商品实际购买价格 -->
+        <result column="final_price" jdbcType="DECIMAL" property="finalPrice"/>
+
+        <!-- 本店价 -->
+        <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+
+        <!-- 商品成本价 -->
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+
+        <!-- 会员折扣价 -->
+        <result column="member_goods_price" jdbcType="DECIMAL" property="memberGoodsPrice"/>
+
+        <!-- 购买商品赠送积分 -->
+        <result column="give_integral" jdbcType="INTEGER" property="giveIntegral"/>
+
+        <!-- 商品规格key -->
+        <result column="spec_key" jdbcType="VARCHAR" property="specKey"/>
+
+        <!-- 规格对应的中文名字 -->
+        <result column="spec_key_name" jdbcType="VARCHAR" property="specKeyName"/>
+
+        <!-- 条码 -->
+        <result column="bar_code" jdbcType="VARCHAR" property="barCode"/>
+
+        <!-- 是否评价 -->
+        <result column="is_comment" jdbcType="INTEGER" property="isComment"/>
+
+        <!-- 0 普通订单,1 限时抢购, 2 团购 , 3 促销优惠, 4 预售 -->
+        <result column="prom_type" jdbcType="INTEGER" property="promType"/>
+
+        <!-- 活动id -->
+        <result column="prom_id" jdbcType="INTEGER" property="promId"/>
+
+        <!-- 0未发货，1已发货，2已换货，3已退货 -->
+        <result column="is_send" jdbcType="INTEGER" property="isSend"/>
+
+        <!-- 发货单ID -->
+        <result column="delivery_id" jdbcType="INTEGER" property="deliveryId"/>
+
+        <!-- sku -->
+        <result column="sku" jdbcType="VARCHAR" property="sku"/>
+
+        <!-- 商家店铺id -->
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+
+        <!-- 商家抽成比例 -->
+        <result column="commission" jdbcType="INTEGER" property="commission"/>
+
+        <!-- 是否已跟商家结账0 否1是 -->
+        <result column="is_checkout" jdbcType="INTEGER" property="isCheckout"/>
+
+        <!-- 0:为删除；1：已删除 -->
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+
+        <!-- 三级分销的金额 -->
+        <result column="distribut" jdbcType="DECIMAL" property="distribut"/>
+
+        <!-- 门店ID -->
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+
+    </resultMap>
+    <resultMap id="OrderGoods" type="com.soubao.entity.OrderGoods" extends="BaseResultMap">
+        <association property="order" javaType="com.soubao.entity.Order">
+            <result column="pay_time" property="payTime"/>
+            <result column="order_sn" property="orderSn"/>
+            <result column="add_time" property="addTime"/>
+        </association>
+    </resultMap>
+
+    <select id="selectCommentCountByUserAndStatusByUserId" resultType="java.lang.Integer">
+    SELECT
+        count( 1 )
+    FROM
+        order_goods og
+        JOIN `order` o ON o.order_id = og.order_id
+        LEFT JOIN comment c ON c.rec_id = og.rec_id
+    WHERE
+        og.is_send IN ( 1, 3 )
+        AND o.user_id = #{user_id}
+        AND og.is_comment = #{status}
+        AND o.deleted = 0
+        AND o.order_status IN (2,4)
+  </select>
+
+    <select id="selectOrderGoodsCommentPage" resultMap="OrderGoods">
+        select og.rec_id,og.goods_id,og.goods_name,og.spec_key_name,og.is_comment,og.order_id,og.store_id,og.goods_price,og.goods_num,og.is_comment,o.pay_time,o.order_sn,o.add_time
+        from order_goods og inner join `order` o on o.order_id = og.order_id
+        where
+        og.is_send in (1,3)
+        and o.user_id = #{userId}
+        and o.order_status IN (2,4)
+        and og.deleted = 0
+        <if test="isComment != null">
+            and og.is_comment = #{isComment}
+        </if>
+    </select>
+
+    <select id="queryOrderGoods" resultType="com.soubao.entity.OrderGoods">
+        select * from order_goods where order_id = #{orderId}
+    </select>
+</mapper>

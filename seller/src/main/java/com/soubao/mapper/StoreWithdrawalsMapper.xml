@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.StoreWithdrawalsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.StoreWithdrawals">
+        <result column="id" property="id"/>
+        <result column="store_id" property="storeId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="refuse_time" property="refuseTime"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="check_time" property="checkTime"/>
+        <result column="money" property="money"/>
+        <result column="bank_name" property="bankName"/>
+        <result column="bank_card" property="bankCard"/>
+        <result column="realname" property="realname"/>
+        <result column="remark" property="remark"/>
+        <result column="status" property="status"/>
+        <result column="pay_code" property="payCode"/>
+        <result column="taxfee" property="taxfee"/>
+        <result column="error_code" property="errorCode"/>
+
+        <result column="store_name" property="storeName"/>
+        <result column="store_money" property="storeMoney"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        store_id, create_time, refuse_time, pay_time, check_time, money, bank_name, bank_card, realname, remark, status, pay_code, taxfee, error_code
+    </sql>
+    <select id="selectStoreWithdrawalsPage" resultMap="BaseResultMap">
+        SELECT sw.*,s.store_name
+        FROM store_withdrawals sw
+        LEFT JOIN store s ON s.store_id = sw.store_id
+        <where>
+            <if test="storeId != null">
+                and sw.store_id = ${storeId}
+            </if>
+            <if test="startTime != null">
+              and sw.create_time &gt;= ${startTime}
+           </if>
+           <if test="endTime != null">
+            and sw.create_time &lt;= ${endTime}
+           </if>
+           <if test="status != null">
+            and sw.status = ${status}
+           </if>
+            <if test="bankCard != null">
+                and sw.bank_card LIKE concat(concat("%",#{bankCard}),"%")
+            </if>
+           <if test="realname != null">
+               and sw.realname LIKE concat(concat("%",#{realname}),"%")
+            </if>
+        </where>
+        order by sw.id
+    </select>
+    <select id="selectStoreWithdrawalsById" resultMap="BaseResultMap">
+        SELECT sw.*,s.store_name,s.store_money
+        FROM store_withdrawals sw
+        LEFT JOIN store s ON s.store_id = sw.store_id
+        WHERE sw.id = #{id}
+    </select>
+    <select id="selectStoreWithdrawalsExportData" resultType="com.soubao.vo.StoreWithdrawalsExcel">
+        SELECT sw.*,s.store_name
+        FROM store_withdrawals sw
+        LEFT JOIN store s ON s.store_id = sw.store_id
+        <where>
+            <if test="ids != null" >
+                and sw.id in (ids)
+            </if>
+            <if test="storeId != null">
+                and sw.store_id = ${storeId}
+            </if>
+            <if test="startTime != null">
+                and sw.create_time &gt;= ${startTime}
+            </if>
+            <if test="endTime != null">
+                and sw.create_time &lt;= ${endTime}
+            </if>
+            <if test="status != null">
+                and sw.status = ${status}
+            </if>
+            <if test="bankCard != null">
+                and sw.bank_card LIKE concat(concat("%",#{bankCard}),"%")
+            </if>
+            <if test="realname != null">
+                and sw.realname LIKE concat(concat("%",#{realname}),"%")
+            </if>
+        </where>
+        order by sw.id
+    </select>
+</mapper>

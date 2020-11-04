@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Order">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="master_order_sn" jdbcType="VARCHAR" property="masterOrderSn"/>
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="pay_status" jdbcType="INTEGER" property="payStatus"/>
+        <result column="shipping_status" jdbcType="INTEGER" property="shippingStatus"/>
+        <result column="consignee" jdbcType="VARCHAR" property="consignee"/>
+        <result column="country" jdbcType="INTEGER" property="country"/>
+        <result column="province" jdbcType="INTEGER" property="province"/>
+        <result column="city" jdbcType="INTEGER" property="city"/>
+        <result column="district" jdbcType="INTEGER" property="district"/>
+        <result column="twon" jdbcType="INTEGER" property="twon"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="zipcode" jdbcType="VARCHAR" property="zipcode"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="shipping_code" jdbcType="VARCHAR" property="shippingCode"/>
+        <result column="shipping_name" jdbcType="VARCHAR" property="shippingName"/>
+        <result column="shipping_price" jdbcType="DECIMAL" property="shippingPrice"/>
+        <result column="shipping_time" jdbcType="INTEGER" property="shippingTime"/>
+        <result column="pay_code" jdbcType="VARCHAR" property="payCode"/>
+        <result column="pay_name" jdbcType="VARCHAR" property="payName"/>
+        <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle"/>
+        <result column="taxpayer" jdbcType="VARCHAR" property="taxpayer"/>
+        <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+        <result column="user_money" jdbcType="DECIMAL" property="userMoney"/>
+        <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice"/>
+        <result column="integral" jdbcType="INTEGER" property="integral"/>
+        <result column="integral_money" jdbcType="DECIMAL" property="integralMoney"/>
+        <result column="order_amount" jdbcType="DECIMAL" property="orderAmount"/>
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount"/>
+        <result column="paid_money" jdbcType="DECIMAL" property="paidMoney"/>
+        <result column="add_time" jdbcType="INTEGER" property="addTime"/>
+        <result column="confirm_time" jdbcType="INTEGER" property="confirmTime"/>
+        <result column="pay_time" jdbcType="INTEGER" property="payTime"/>
+        <result column="transaction_id" jdbcType="VARCHAR" property="transactionId"/>
+        <result column="prom_id" jdbcType="INTEGER" property="promId"/>
+        <result column="prom_type" jdbcType="INTEGER" property="promType"/>
+        <result column="order_prom_id" jdbcType="INTEGER" property="orderPromId"/>
+        <result column="order_prom_amount" jdbcType="DECIMAL" property="orderPromAmount"/>
+        <result column="discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="user_note" jdbcType="VARCHAR" property="userNote"/>
+        <result column="admin_note" jdbcType="VARCHAR" property="adminNote"/>
+        <result column="parent_sn" jdbcType="VARCHAR" property="parentSn"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+        <result column="order_store_id" jdbcType="INTEGER" property="orderStoreId"/>
+        <result column="is_comment" jdbcType="INTEGER" property="isComment"/>
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+        <result column="order_statis_id" jdbcType="INTEGER" property="orderStatisId"/>
+    </resultMap>
+
+
+
+
+</mapper>

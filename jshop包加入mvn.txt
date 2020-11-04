@@ -1,0 +1,1 @@
+>mvn install:install-file -Dfile=jshop-1.0.jar -DgroupId=com.soubao.common -DartifactId=jshop-common -Dversion=1.0 -Dpackaging=jar

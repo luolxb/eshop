@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.SellerLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.SellerLog">
+        <id column="log_id" property="logId" />
+        <result column="log_content" property="logContent" />
+        <result column="log_time" property="logTime" />
+        <result column="log_seller_id" property="logSellerId" />
+        <result column="log_seller_name" property="logSellerName" />
+        <result column="log_store_id" property="logStoreId" />
+        <result column="log_seller_ip" property="logSellerIp" />
+        <result column="log_url" property="logUrl" />
+        <result column="log_state" property="logState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log_id, log_content, log_time, log_seller_id, log_seller_name, log_store_id, log_seller_ip, log_url, log_state
+    </sql>
+
+</mapper>

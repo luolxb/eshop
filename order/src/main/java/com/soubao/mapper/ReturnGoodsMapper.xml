@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.ReturnGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.ReturnGoods">
+    <result column="id" property="id" />
+        <result column="rec_id" property="recId" />
+        <result column="order_id" property="orderId" />
+        <result column="order_sn" property="orderSn" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_num" property="goodsNum" />
+        <result column="type" property="type" />
+        <result column="reason" property="reason" />
+        <result column="describe" property="describe" />
+        <result column="evidence" property="evidence" />
+        <result column="imgs" property="imgs" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="user_id" property="userId" />
+        <result column="store_id" property="storeId" />
+        <result column="spec_key" property="specKey" />
+        <result column="consignee" property="consignee" />
+        <result column="mobile" property="mobile" />
+        <result column="refund_integral" property="refundIntegral" />
+        <result column="refund_deposit" property="refundDeposit" />
+        <result column="refund_money" property="refundMoney" />
+        <result column="refund_type" property="refundType" />
+        <result column="refund_mark" property="refundMark" />
+        <result column="refund_time" property="refundTime" />
+        <result column="addtime" property="addtime" />
+        <result column="checktime" property="checktime" />
+        <result column="receivetime" property="receivetime" />
+        <result column="canceltime" property="canceltime" />
+        <result column="seller_delivery" property="sellerDelivery" />
+        <result column="delivery" property="delivery" />
+        <result column="gap" property="gap" />
+        <result column="gap_reason" property="gapReason" />
+        <result column="is_receive" property="isReceive" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        rec_id, order_id, order_sn, goods_id, goods_num, `type`, reason, `describe`, evidence, imgs, status, remark, user_id, store_id, spec_key, consignee, mobile, refund_integral, refund_deposit, refund_money, refund_type, refund_mark, refund_time, addtime, checktime, receivetime, canceltime, seller_delivery, delivery, gap, gap_reason, is_receive
+    </sql>
+</mapper>

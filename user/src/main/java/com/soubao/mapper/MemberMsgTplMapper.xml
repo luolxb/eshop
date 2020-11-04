@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.MemberMsgTplMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.MemberMsgTpl">
+        <id column="mmt_code" property="mmtCode" />
+        <result column="mmt_name" property="mmtName" />
+        <result column="mmt_message_switch" property="mmtMessageSwitch" />
+        <result column="mmt_message_content" property="mmtMessageContent" />
+        <result column="mmt_short_switch" property="mmtShortSwitch" />
+        <result column="mmt_short_content" property="mmtShortContent" />
+        <result column="mmt_mail_switch" property="mmtMailSwitch" />
+        <result column="mmt_mail_subject" property="mmtMailSubject" />
+        <result column="mmt_mail_content" property="mmtMailContent" />
+        <result column="mmt_short_sign" property="mmtShortSign" />
+        <result column="mmt_short_code" property="mmtShortCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        mmt_code, mmt_name, mmt_message_switch, mmt_message_content, mmt_short_switch, mmt_short_content, mmt_mail_switch, mmt_mail_subject, mmt_mail_content, mmt_short_sign, mmt_short_code
+    </sql>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.GroupBuyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.GroupBuy">
+        <result column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="item_id" property="itemId"/>
+        <result column="price" property="price"/>
+        <result column="goods_num" property="goodsNum"/>
+        <result column="buy_num" property="buyNum"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="virtual_num" property="virtualNum"/>
+        <result column="rebate" property="rebate"/>
+        <result column="intro" property="intro"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="recommend" property="recommend"/>
+        <result column="views" property="views"/>
+        <result column="store_id" property="storeId"/>
+        <result column="status" property="status"/>
+        <result column="is_end" property="isEnd"/>
+        <result column="is_deleted" property="isDeleted" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        title, start_time, end_time, goods_id, item_id, price, goods_num, buy_num, order_num, virtual_num, rebate, intro, goods_price, goods_name, recommend, views, store_id, status, is_end
+    </sql>
+    <select id="selectGroupBuyGoodsPage" resultType="com.soubao.vo.GroupBuyGoodsVo">
+        select b.goods_id,b.title as goods_name, b.end_time,
+        g.comment_count, i.rebate, (i.virtual_num + i.buy_num) as sales_sum,
+        i.goods_price as market_price,i.price as shop_price
+        from group_buy b
+        INNER JOIN group_buy_goods_item i on i.group_buy_id=b.id
+        INNER JOIN goods g on b.goods_id=g.goods_id AND g.prom_type=2
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+</mapper>

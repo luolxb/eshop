@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.OrderCommentMapper">
+    <resultMap id="BaseResultMap" type="com.soubao.entity.OrderComment">
+
+        <!-- 表id自增 -->
+        <result column="order_commemt_id" jdbcType="INTEGER" property="orderCommentId"/>
+
+        <!-- 订单id -->
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+
+        <!-- 店铺id -->
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+
+        <!-- 用户id -->
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+
+        <!-- 商品名称 -->
+        <result column="describe_score" jdbcType="DECIMAL" property="describeScore"/>
+        <result column="seller_score" jdbcType="DECIMAL" property="sellerScore"/>
+        <result column="logistics_score" jdbcType="DECIMAL" property="logisticsScore"/>
+        <result column="commemt_time" jdbcType="BIGINT" property="commentTime"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+
+        <result column="nickname" property="nickname"/>
+        <result column="store_name" property="storeName"/>
+        <result column="order_sn" property="orderSn"/>
+        <result column="comment_count" jdbcType="INTEGER" property="commentCount"/>
+    </resultMap>
+    <resultMap id="StoreMap" type="com.soubao.entity.Store">
+        <result column="store_desccredit" jdbcType="DECIMAL" property="storeDesccredit"/>
+        <result column="store_servicecredit" jdbcType="DECIMAL" property="storeServicecredit"/>
+        <result column="store_deliverycredit" jdbcType="DECIMAL" property="storeDeliverycredit"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+    </resultMap>
+
+    <select id="selectStoreScore" resultMap="StoreMap">
+        select store_id,AVG(describe_score) AS store_desccredit,AVG(seller_score) AS store_servicecredit,AVG(logistics_score) AS store_deliverycredit
+        FROM order_comment where store_id = #{store.storeId}
+    </select>
+
+</mapper>

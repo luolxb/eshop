@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.FreightConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.FreightConfig">
+        <id column="config_id" property="configId" />
+        <result column="first_unit" property="firstUnit" />
+        <result column="first_money" property="firstMoney" />
+        <result column="continue_unit" property="continueUnit" />
+        <result column="continue_money" property="continueMoney" />
+        <result column="template_id" property="templateId" />
+        <result column="is_default" property="isDefault" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <resultMap id="WithRegion" type="com.soubao.entity.FreightConfig" extends="BaseResultMap">
+        <collection property="freightRegionList" ofType="com.soubao.entity.FreightRegion"
+                    select="com.soubao.dao.FreightRegionMapper.selectFreightRegion" column="config_id">
+            <result column="template_id" property="templateId" />
+            <result column="config_id" property="configId" />
+            <result column="region_id" property="regionId" />
+            <result column="store_id" property="storeId" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        config_id, first_unit, first_money, continue_unit, continue_money, template_id, is_default, store_id
+    </sql>
+    <select id="selectFreightConfig" resultMap="WithRegion">
+        select * from freight_config where template_id = #{templateId}
+    </select>
+</mapper>

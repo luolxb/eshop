@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soubao.dao.CombinationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soubao.entity.Combination">
+        <result column="combination_id" property="combinationId" />
+        <result column="title" property="title" />
+        <result column="desc" property="desc" />
+        <result column="is_on_sale" property="isOnSale" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="status" property="status" />
+        <result column="store_id" property="storeId" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+    <resultMap id="CombinationPage" type="com.soubao.entity.Combination" extends="BaseResultMap">
+        <association property="goodsCount" javaType="Integer" select="queryGoodsCount" column="combination_id"></association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        combination_id,
+        title, desc, is_on_sale, start_time, end_time, status, store_id, is_deleted
+    </sql>
+
+    <select id="selectCombinationPage" resultMap="CombinationPage">
+        SELECT
+        *
+        FROM
+        combination
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="queryGoodsCount" resultType="Integer">
+        SELECT COUNT(1) FROM combination_goods WHERE combination_id = #{combinationId}
+    </select>
+</mapper>
