@@ -1,0 +1,154 @@
+create table store_bind_class
+(
+    bid         int unsigned auto_increment
+        primary key,
+    store_id    int(11) unsigned      default 0 null comment '店铺ID',
+    commis_rate tinyint(4) unsigned   default 0 null comment '佣金比例',
+    class_1     mediumint(9) unsigned default 0 null comment '一级分类',
+    class_2     mediumint(9) unsigned default 0 null comment '二级分类',
+    class_3     mediumint(9) unsigned default 0 null comment '三级分类',
+    state       tinyint unsigned      default 0 not null comment '状态0审核中1审核通过 2审核失败'
+)
+    comment '店铺可发布商品类目表' charset = utf8;
+
+create index store_id
+    on store_bind_class (store_id);
+
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (407, 87, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (408, 87, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (409, 87, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (410, 87, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (411, 87, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (412, 87, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (413, 88, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (414, 88, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (415, 88, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (416, 88, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (417, 88, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (418, 88, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (419, 89, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (420, 89, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (421, 89, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (422, 89, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (423, 89, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (424, 89, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (425, 90, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (426, 90, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (427, 90, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (428, 90, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (429, 90, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (430, 90, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (431, 91, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (432, 91, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (433, 91, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (434, 91, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (435, 91, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (436, 91, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (437, 95, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (438, 95, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (439, 95, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (440, 95, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (441, 95, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (442, 95, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (443, 98, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (444, 98, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (445, 98, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (446, 98, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (447, 98, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (448, 98, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (449, 101, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (450, 101, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (451, 101, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (452, 101, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (453, 101, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (454, 101, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (455, 102, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (456, 102, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (457, 102, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (458, 102, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (459, 102, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (460, 102, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (461, 103, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (462, 103, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (463, 103, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (464, 103, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (465, 103, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (466, 103, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (467, 104, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (468, 104, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (469, 104, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (470, 104, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (471, 104, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (472, 104, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (473, 105, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (474, 105, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (475, 105, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (476, 105, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (477, 105, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (478, 105, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (479, 106, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (480, 106, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (481, 106, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (482, 106, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (483, 106, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (484, 106, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (485, 107, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (486, 107, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (487, 107, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (488, 107, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (489, 107, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (490, 107, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (491, 109, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (492, 109, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (493, 109, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (494, 109, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (495, 109, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (496, 109, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (497, 110, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (498, 110, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (499, 110, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (500, 110, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (501, 110, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (502, 110, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (503, 113, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (504, 113, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (505, 113, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (506, 113, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (507, 113, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (508, 113, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (509, 114, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (510, 114, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (511, 114, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (512, 114, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (513, 114, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (514, 114, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (515, 119, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (516, 119, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (517, 119, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (518, 119, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (519, 119, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (520, 119, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (521, 120, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (522, 120, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (523, 120, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (524, 120, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (525, 120, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (526, 120, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (527, 121, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (528, 121, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (529, 121, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (530, 121, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (531, 121, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (532, 121, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (533, 123, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (534, 123, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (535, 123, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (536, 123, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (537, 123, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (538, 123, 0, 188, 185, 194, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (539, 125, 0, 188, 183, 189, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (540, 125, 0, 188, 183, 190, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (541, 125, 0, 188, 184, 191, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (542, 125, 0, 188, 184, 192, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (543, 125, 0, 188, 185, 193, 1);
+INSERT INTO bb2_seller.store_bind_class (bid, store_id, commis_rate, class_1, class_2, class_3, state) VALUES (544, 125, 0, 188, 185, 194, 1);
